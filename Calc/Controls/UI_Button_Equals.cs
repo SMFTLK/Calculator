@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Calc
@@ -42,13 +43,17 @@ namespace Calc
 
             Graphics graph = e.Graphics;
             graph.SmoothingMode = SmoothingMode.HighQuality;
-
             graph.Clear(Parent.BackColor);
 
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
-            graph.DrawRectangle(new Pen(BackColor), rect);
-            graph.FillRectangle(new SolidBrush(BackColor), rect);
+            GraphicsPath path = MakeCornersRounded(rect, rect.Height - 80);
+
+            Color BoxColor = BackColor;
+            Color FontColor = ForeColor;
+
+            graph.DrawPath(new Pen(BoxColor), path);
+            graph.FillPath(new SolidBrush(BoxColor), path);
 
             if (MouseEntered)
             {
@@ -56,7 +61,28 @@ namespace Calc
                 graph.FillRectangle(new SolidBrush(Color.FromArgb(30, Color.Black)), rect);
             }
 
-            graph.DrawString(Text, Font, new SolidBrush(ForeColor), rect, SF);
+            graph.DrawString(Text, Font, new SolidBrush(FontColor), rect, SF);
+        }
+
+        private GraphicsPath MakeCornersRounded(Rectangle figure, int cornerSize)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            // Левая верхняя арка
+            path.AddArc(figure.X, figure.Y, cornerSize, cornerSize, 180, 90);
+
+            // Правая верхняя арка
+            path.AddArc(figure.X + figure.Width - cornerSize, figure.Y, cornerSize, cornerSize, 270, 90);
+
+            // Левая нижняя арка
+            path.AddArc(figure.X + figure.Width - cornerSize, figure.Y + figure.Height - cornerSize, cornerSize, cornerSize, 0, 90);
+
+            // Правая нижняя арка
+            path.AddArc(figure.X, figure.Y + figure.Height - cornerSize, cornerSize, cornerSize, 90, 90);
+
+            path.CloseFigure();
+
+            return path;
         }
 
         protected override void OnMouseEnter(EventArgs e)
