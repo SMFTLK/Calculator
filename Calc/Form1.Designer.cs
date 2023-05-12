@@ -21,7 +21,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uI_Button_Numbers_ChangeSign = new Calc.UI_Button_Numbers();
+            this.uI_Label = new Calc.UI_Label();
+            this.uI_TextBox = new Calc.UI_TextBox();
+
             this.uI_Button_Operations_CE = new Calc.UI_Button_Operations();
             this.uI_Button_Operations_C = new Calc.UI_Button_Operations();
             this.uI_Button_Operations_Hyperbole = new Calc.UI_Button_Operations();
@@ -29,13 +31,15 @@
             this.uI_Button_Operations_Modulo = new Calc.UI_Button_Operations();
             this.uI_Button_Operations_Delete = new Calc.UI_Button_Operations();
             this.uI_Button_Operations_Square = new Calc.UI_Button_Operations();
-            this.uI_Label = new Calc.UI_Label();
-            this.uI_Button_Numbers_Comma = new Calc.UI_Button_Numbers();
-            this.uI_TextBox = new Calc.UI_TextBox();
+
             this.uI_Button_Operations_Multiplication = new Calc.UI_Button_Operations();
             this.uI_Button_Operations_Division = new Calc.UI_Button_Operations();
             this.uI_Button_Operations_Subtraction = new Calc.UI_Button_Operations();
             this.uI_Button_Operations_Addition = new Calc.UI_Button_Operations();
+
+            this.uI_Button_Numbers_Comma = new Calc.UI_Button_Numbers();
+            this.uI_Button_Numbers_ChangeSign = new Calc.UI_Button_Numbers();
+
             this.uI_Button_Numbers0 = new Calc.UI_Button_Numbers();
             this.uI_Button_Numbers9 = new Calc.UI_Button_Numbers();
             this.uI_Button_Numbers8 = new Calc.UI_Button_Numbers();
@@ -450,7 +454,11 @@
 
         #endregion
 
+        private UI_TextBox uI_TextBox;
+        private UI_Label uI_Label;
+
         private UI_Button_Equals uI_Button_Equals;
+
         private UI_Button_Numbers uI_Button_Numbers1;
         private UI_Button_Numbers uI_Button_Numbers2;
         private UI_Button_Numbers uI_Button_Numbers3;
@@ -461,13 +469,14 @@
         private UI_Button_Numbers uI_Button_Numbers8;
         private UI_Button_Numbers uI_Button_Numbers9;
         private UI_Button_Numbers uI_Button_Numbers0;
+
+        private UI_Button_Numbers uI_Button_Numbers_Comma;
+
         private UI_Button_Operations uI_Button_Operations_Addition;
         private UI_Button_Operations uI_Button_Operations_Subtraction;
         private UI_Button_Operations uI_Button_Operations_Division;
         private UI_Button_Operations uI_Button_Operations_Multiplication;
-        private UI_TextBox uI_TextBox;
-        private UI_Button_Numbers uI_Button_Numbers_Comma;
-        private UI_Label uI_Label;
+
         private UI_Button_Operations uI_Button_Operations_Square;
         private UI_Button_Operations uI_Button_Operations_Delete;
         private UI_Button_Operations uI_Button_Operations_Modulo;
