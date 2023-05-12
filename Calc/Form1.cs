@@ -52,6 +52,8 @@ namespace Calc
             uI_TextBox.Text = "0";
         }
 
+        #region События
+
         /// <summary>
         /// Кнопка с цифрой для ввода числа
         /// </summary>
@@ -378,7 +380,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Событие, при котором изменяется текст в uI_Label
+        /// Событие, при котором изменяется текст в uI_TextBox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -461,6 +463,14 @@ namespace Calc
             uI_TextBox.Refresh();
         }
 
+        private void Form_SizeChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Методы формы
         private double GetResult(string oper, double rightVar, double leftVar)
         {
             double result;
@@ -517,9 +527,6 @@ namespace Calc
             return result;
         }
 
-        private void Form_SizeChanged(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
     }
 }

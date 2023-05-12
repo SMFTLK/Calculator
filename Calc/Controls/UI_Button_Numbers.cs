@@ -7,12 +7,25 @@ namespace Calc
 {
     public class UI_Button_Numbers : Control
     {
-        private StringFormat SF = new StringFormat();
+        #region Переменные
 
-        private bool MouseEntered = false;
+        private StringFormat SF;
+
+        private bool MouseEntered;
+
+        Rectangle rect;
+
+        Color BoxColor;
+        Color FontColor;
+        Color BorderColor;
+
+        #endregion
 
         public UI_Button_Numbers()
         {
+            SF = new StringFormat();
+            MouseEntered = false;
+
             SetStyle(
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.OptimizedDoubleBuffer |
@@ -36,6 +49,7 @@ namespace Calc
             SF.LineAlignment = StringAlignment.Center;
         }
 
+        #region Отрисовка
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -46,12 +60,14 @@ namespace Calc
 
             // Resize += new EventHandler(FormResize);
 
-            Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
+            rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
             GraphicsPath path = MakeCornersRounded(rect, rect.Height - 80);
 
-            Color BoxColor = BackColor;
-            Color FontColor = ForeColor;
+            // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
+            BoxColor = BackColor;
+            FontColor = ForeColor;
+            BorderColor = Color.FromArgb(15, Color.White);
 
             if (!Enabled)
             {
@@ -64,13 +80,9 @@ namespace Calc
 
             graph.DrawPath(new Pen(BoxColor), path);
             graph.FillPath(new SolidBrush(BoxColor), path);
+            graph.DrawPath(new Pen(BorderColor), path);
 
             graph.DrawString(Text, Font, new SolidBrush(FontColor), rect, SF);
-        }
-
-        private void FormResize(object sender, EventArgs e)
-        {
-            Location = new Point(Width / 2, Height / 2);
         }
 
         private GraphicsPath MakeCornersRounded(Rectangle figure, int cornerSize)
@@ -94,6 +106,9 @@ namespace Calc
             return path;
         }
 
+        #endregion
+
+        #region События
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
@@ -110,6 +125,14 @@ namespace Calc
             MouseEntered = false;
 
             Invalidate();
+        }
+
+        #endregion
+
+
+        private void FormResize(object sender, EventArgs e)
+        {
+            Location = new Point(Width / 2, Height / 2);
         }
     }
 }

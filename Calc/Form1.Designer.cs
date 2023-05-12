@@ -163,6 +163,7 @@
             this.uI_Button_Operations_Square.TabIndex = 21;
             this.uI_Button_Operations_Square.Text = "x²";
             this.uI_Button_Operations_Square.Click += new System.EventHandler(this.UI_Button_Operations_Square_Click);
+            this.uI_Button_Operations_Square.DoubleClick += new System.EventHandler(this.UI_Button_Operations_Square_Click);
             // 
             // uI_Label
             // 

@@ -8,12 +8,25 @@ namespace Calc
 {
     public class UI_Button_Equals : Control
     {
-        private StringFormat SF = new StringFormat();
+        #region Переменные
 
-        private bool MouseEntered = false;
+        private StringFormat SF;
+
+        private bool MouseEntered;
+
+        Rectangle rect;
+
+        Color BoxColor;
+        Color FontColor;
+        Color BorderColor;
+
+        #endregion
 
         public UI_Button_Equals()
         {
+            SF = new StringFormat();
+            MouseEntered = false;
+
             SetStyle(
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.OptimizedDoubleBuffer |
@@ -37,6 +50,7 @@ namespace Calc
             SF.LineAlignment = StringAlignment.Center;
         }
 
+        #region Отрисовка
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -45,20 +59,24 @@ namespace Calc
             graph.SmoothingMode = SmoothingMode.HighQuality;
             graph.Clear(Parent.BackColor);
 
-            Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
+            rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
             GraphicsPath path = MakeCornersRounded(rect, rect.Height - 80);
 
-            Color BoxColor = BackColor;
-            Color FontColor = ForeColor;
+            // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
+            BoxColor = BackColor;
+            FontColor = ForeColor;
+            BorderColor = Color.FromArgb(15, Color.White);
 
             graph.DrawPath(new Pen(BoxColor), path);
             graph.FillPath(new SolidBrush(BoxColor), path);
+            graph.DrawPath(new Pen(BorderColor), path);
 
             if (MouseEntered)
             {
                 graph.DrawRectangle(new Pen(Color.FromArgb(30, Color.Black)), rect);
                 graph.FillRectangle(new SolidBrush(Color.FromArgb(30, Color.Black)), rect);
+                graph.DrawPath(new Pen(BorderColor), path);
             }
 
             graph.DrawString(Text, Font, new SolidBrush(FontColor), rect, SF);
@@ -85,6 +103,10 @@ namespace Calc
             return path;
         }
 
+        #endregion
+
+        #region События
+
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
@@ -102,5 +124,7 @@ namespace Calc
 
             Invalidate();
         }
+
+        #endregion
     }
 }

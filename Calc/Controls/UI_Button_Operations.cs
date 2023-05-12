@@ -8,9 +8,17 @@ namespace Calc
     public class UI_Button_Operations : Control
     {
         #region Переменные
+
         private StringFormat SF;
+
         private bool MouseEntered;
+
         Rectangle rect;
+
+        Color BoxColor;
+        Color FontColor;
+        Color BorderColor;
+
         #endregion
 
         public UI_Button_Operations()
@@ -33,6 +41,11 @@ namespace Calc
             BackColor = Color.FromArgb(50, 50, 50);
             ForeColor = Color.White;
 
+            // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
+            BoxColor = BackColor;
+            FontColor = ForeColor;
+            BorderColor = Color.FromArgb(15, Color.White);
+
             Font = new Font("Yu Gothic", 20F, FontStyle.Regular);
 
             Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
@@ -40,6 +53,8 @@ namespace Calc
             SF.Alignment = StringAlignment.Center;
             SF.LineAlignment = StringAlignment.Center;
         }
+
+        #region Отрисовка
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -49,12 +64,14 @@ namespace Calc
             graph.SmoothingMode = SmoothingMode.HighQuality;
             graph.Clear(Parent.BackColor);
 
-            Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
+            rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
             GraphicsPath path = MakeCornersRounded(rect, rect.Height - 80);
 
-            Color BoxColor = BackColor;
-            Color FontColor = ForeColor;
+            // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
+            BoxColor = BackColor;
+            FontColor = ForeColor;
+            BorderColor = Color.FromArgb(15, Color.White);
 
             if (!Enabled)
             {
@@ -67,6 +84,7 @@ namespace Calc
 
             graph.DrawPath(new Pen(BoxColor), path);
             graph.FillPath(new SolidBrush(BoxColor), path);
+            graph.DrawPath(new Pen(BorderColor), path);
 
             graph.DrawString(Text, Font, new SolidBrush(FontColor), rect, SF);
         }
@@ -92,6 +110,10 @@ namespace Calc
             return path;
         }
 
+        #endregion
+
+        #region События
+
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
@@ -109,5 +131,7 @@ namespace Calc
 
             Invalidate();
         }
+
+        #endregion
     }
 }
