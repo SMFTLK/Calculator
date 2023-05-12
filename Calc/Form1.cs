@@ -253,6 +253,7 @@ namespace Calc
 
             #endregion
 
+            // Обнуление переменных
             isNewNumber = false;
             isReadingFirstNumber = true;
             isOperationGoingOn = false;
