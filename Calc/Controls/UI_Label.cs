@@ -10,8 +10,8 @@ namespace Calc
 
         private StringFormat SF = new StringFormat();
 
-        public static int labelWidth = 450;
-        public static int labelHeight = 70;
+        public static int labelWidth;
+        public static int labelHeight;
 
         public Point originalLocation;
 
@@ -28,8 +28,6 @@ namespace Calc
                 true
             );
             DoubleBuffered = true;
-
-            Size = new Size(labelWidth, labelHeight);
 
             BackColor = Color.FromArgb(32, 32, 32);
             ForeColor = Color.FromArgb(166, 166, 166);
@@ -70,6 +68,9 @@ namespace Calc
             base.InitLayout();
 
             originalLocation = Location;
+
+            labelHeight = Height;
+            labelWidth = Width;
         }
 
         #endregion

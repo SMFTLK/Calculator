@@ -11,8 +11,8 @@ namespace Calc
 
         private StringFormat SF;
 
-        public static int buttonWidth = 155;
-        public static int buttonHeight = 90;
+        public static int buttonWidth;
+        public static int buttonHeight;
 
         private int cornerSize = 10;
 
@@ -44,8 +44,6 @@ namespace Calc
             DoubleBuffered = true;
 
             AutoSize = true;
-
-            Size = new Size(buttonWidth, buttonHeight);
 
             BackColor = Color.FromArgb(89, 89, 89);
             ForeColor = Color.Black;
@@ -141,6 +139,9 @@ namespace Calc
             base.InitLayout();
 
             originalLocation = Location;
+
+            buttonWidth = Width;
+            buttonHeight = Height;
         }
 
         #endregion

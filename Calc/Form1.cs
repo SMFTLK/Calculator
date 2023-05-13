@@ -676,19 +676,19 @@ namespace Calc
 
         private void ResizeNumberControlFont(Control ctrl)
         {
-            if (Size.Width <= 640 && Size.Height <= 480)
+            if (Width <= 640 && Height <= 480)
                 ctrl.Font = new Font(ctrl.Font.FontFamily, 10F);
 
-            else if (Size.Width <= 1280 && Size.Width > 640 && Size.Height <= 720 && Size.Height > 480)
+            else if (Width <= 1280 && Width > 640 && Height <= 720 && Height > 480)
                 ctrl.Font = new Font(ctrl.Font.FontFamily, 15F);
 
-            else if (Size.Width <= 1600 && Size.Width > 1280 && Size.Height <= 900 && Size.Height > 720)
+            else if (Width <= 1600 && Width > 1280 && Height <= 900 && Height > 720)
                 ctrl.Font = new Font(ctrl.Font.FontFamily, 20F);
 
-            else if (Size.Width <= 1920 && Size.Width > 1600 && Size.Height <= 1080 && Size.Height > 900)
+            else if (Width <= 1920 && Width > 1600 && Height <= 1080 && Height > 900)
                 ctrl.Font = new Font(ctrl.Font.FontFamily, 25F);
 
-            else if (Size.Width <= 2560 && Size.Width > 1920 && Size.Height <= 1440 && Size.Height > 1080)
+            else if (Width <= 2560 && Width > 1920 && Height <= 1440 && Height > 1080)
                 ctrl.Font = new Font(ctrl.Font.FontFamily, 30F);
         }
     }

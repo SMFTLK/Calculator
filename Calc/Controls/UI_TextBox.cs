@@ -10,8 +10,8 @@ namespace Calc
 
         private StringFormat SF = new StringFormat();
 
-        public static int textBoxWidth = 626;
-        public static int textBoxHeight = 125;
+        public static int textBoxWidth;
+        public static int textBoxHeight;
 
         public Point originalLocation;
 
@@ -28,8 +28,6 @@ namespace Calc
                 true
             );
             DoubleBuffered = true;
-
-            Size = new Size(textBoxWidth, textBoxHeight);
 
             BackColor = Color.FromArgb(32, 32, 32);
             ForeColor = Color.White;
@@ -70,6 +68,9 @@ namespace Calc
             base.InitLayout();
 
             originalLocation = Location;
+
+            textBoxHeight = Height;
+            textBoxWidth = Width;
         }
 
         #endregion
