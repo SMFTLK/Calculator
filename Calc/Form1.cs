@@ -467,7 +467,7 @@ namespace Calc
 
             #region Кнопка запятой и эквивалентности
 
-            ResizeNumberFont(uI_Button_Numbers_Comma);
+            ResizeNumberFont(uI_Button_Number_Comma);
             ResizeNumberFont(uI_Button_Equals);
 
             #endregion
@@ -508,7 +508,7 @@ namespace Calc
             ResizeNumberFont(uI_Button_Operation_Modulo);
             ResizeNumberFont(uI_Button_Operation_Square);
             ResizeNumberFont(uI_Button_Operation_SquareRoot);
-            ResizeNumberFont(uI_Button_Numbers_ChangeSign);
+            ResizeNumberFont(uI_Button_Number_ChangeSign);
 
             #endregion
 
@@ -540,8 +540,8 @@ namespace Calc
 
             if (T.Text == warnAboutDivisionByZero)
             {
-                uI_Button_Numbers_ChangeSign.Enabled = false;
-                uI_Button_Numbers_Comma.Enabled = false;
+                uI_Button_Number_ChangeSign.Enabled = false;
+                uI_Button_Number_Comma.Enabled = false;
 
                 uI_Button_Operation_Addition.Enabled = false;
                 uI_Button_Operation_Division.Enabled = false;
@@ -557,8 +557,8 @@ namespace Calc
             }
             else
             {
-                uI_Button_Numbers_ChangeSign.Enabled = true;
-                uI_Button_Numbers_Comma.Enabled = true;
+                uI_Button_Number_ChangeSign.Enabled = true;
+                uI_Button_Number_Comma.Enabled = true;
 
                 uI_Button_Operation_Addition.Enabled = true;
                 uI_Button_Operation_Division.Enabled = true;
@@ -590,7 +590,7 @@ namespace Calc
             ResizeControl(originalButtonSize, uI_Button_Operation_Modulo, uI_Button_Operation_Modulo.originalLocation);
             ResizeControl(originalButtonSize, uI_Button_Operation_Square, uI_Button_Operation_Square.originalLocation);
             ResizeControl(originalButtonSize, uI_Button_Operation_SquareRoot, uI_Button_Operation_SquareRoot.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Numbers_ChangeSign, uI_Button_Numbers_ChangeSign.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Number_ChangeSign, uI_Button_Number_ChangeSign.originalLocation);
 
             #endregion
 
@@ -599,7 +599,7 @@ namespace Calc
             ResizeControl(originalButtonSize, uI_Button_Operation_C, uI_Button_Operation_C.originalLocation);
             ResizeControl(originalButtonSize, uI_Button_Operation_CE, uI_Button_Operation_CE.originalLocation);
             ResizeControl(originalButtonSize, uI_Button_Operation_Delete, uI_Button_Operation_Delete.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Numbers_Comma, uI_Button_Numbers_Comma.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Number_Comma, uI_Button_Number_Comma.originalLocation);
 
             ResizeControl(originalButtonSize, uI_Button_Equals, uI_Button_Equals.originalLocation);
 

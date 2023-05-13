@@ -30,7 +30,7 @@
             this.uI_Button_Operation_Delete = new Calc.UI_Button_Operation();
             this.uI_Button_Operation_Square = new Calc.UI_Button_Operation();
             this.uI_Label = new Calc.UI_Label();
-            this.uI_Button_Numbers_Comma = new Calc.UI_Button_Number();
+            this.uI_Button_Number_Comma = new Calc.UI_Button_Number();
             this.uI_TextBox = new Calc.UI_TextBox();
             this.uI_Button_Operation_Multiplication = new Calc.UI_Button_Operation();
             this.uI_Button_Operation_Division = new Calc.UI_Button_Operation();
@@ -51,17 +51,17 @@
             // 
             // uI_Button_Numbers_ChangeSign
             // 
-            this.uI_Button_Numbers_ChangeSign.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
-            this.uI_Button_Numbers_ChangeSign.Font = new System.Drawing.Font("Yu Gothic", 20F);
-            this.uI_Button_Numbers_ChangeSign.ForeColor = System.Drawing.Color.White;
-            this.uI_Button_Numbers_ChangeSign.Location = new System.Drawing.Point(4, 816);
-            this.uI_Button_Numbers_ChangeSign.Name = "uI_Button_Numbers_ChangeSign";
-            this.uI_Button_Numbers_ChangeSign.Size = new System.Drawing.Size(240, 100);
-            this.uI_Button_Numbers_ChangeSign.TabIndex = 28;
-            this.uI_Button_Numbers_ChangeSign.Text = "+/−";
-            this.uI_Button_Numbers_ChangeSign.SizeChanged += new System.EventHandler(this.UI_Button_Numbers_SizeChanged);
-            this.uI_Button_Numbers_ChangeSign.Click += new System.EventHandler(this.UI_Button_Numbers_ChangeSign_Click);
-            this.uI_Button_Numbers_ChangeSign.DoubleClick += new System.EventHandler(this.UI_Button_Numbers_ChangeSign_Click);
+            this.uI_Button_Number_ChangeSign.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+            this.uI_Button_Number_ChangeSign.Font = new System.Drawing.Font("Yu Gothic", 20F);
+            this.uI_Button_Number_ChangeSign.ForeColor = System.Drawing.Color.White;
+            this.uI_Button_Number_ChangeSign.Location = new System.Drawing.Point(4, 816);
+            this.uI_Button_Number_ChangeSign.Name = "uI_Button_Numbers_ChangeSign";
+            this.uI_Button_Number_ChangeSign.Size = new System.Drawing.Size(240, 100);
+            this.uI_Button_Number_ChangeSign.TabIndex = 28;
+            this.uI_Button_Number_ChangeSign.Text = "+/−";
+            this.uI_Button_Number_ChangeSign.SizeChanged += new System.EventHandler(this.UI_Button_Numbers_SizeChanged);
+            this.uI_Button_Number_ChangeSign.Click += new System.EventHandler(this.UI_Button_Numbers_ChangeSign_Click);
+            this.uI_Button_Number_ChangeSign.DoubleClick += new System.EventHandler(this.UI_Button_Numbers_ChangeSign_Click);
             // 
             // uI_Button_Operations_CE
             // 
@@ -171,16 +171,16 @@
             // 
             // uI_Button_Numbers_Comma
             // 
-            this.uI_Button_Numbers_Comma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
-            this.uI_Button_Numbers_Comma.Font = new System.Drawing.Font("Yu Gothic UI", 20F);
-            this.uI_Button_Numbers_Comma.ForeColor = System.Drawing.Color.White;
-            this.uI_Button_Numbers_Comma.Location = new System.Drawing.Point(488, 816);
-            this.uI_Button_Numbers_Comma.Name = "uI_Button_Numbers_Comma";
-            this.uI_Button_Numbers_Comma.Size = new System.Drawing.Size(240, 100);
-            this.uI_Button_Numbers_Comma.TabIndex = 19;
-            this.uI_Button_Numbers_Comma.Text = ",";
-            this.uI_Button_Numbers_Comma.SizeChanged += new System.EventHandler(this.UI_Button_Numbers_SizeChanged);
-            this.uI_Button_Numbers_Comma.Click += new System.EventHandler(this.UI_Button_Numbers_Comma_Click);
+            this.uI_Button_Number_Comma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+            this.uI_Button_Number_Comma.Font = new System.Drawing.Font("Yu Gothic UI", 20F);
+            this.uI_Button_Number_Comma.ForeColor = System.Drawing.Color.White;
+            this.uI_Button_Number_Comma.Location = new System.Drawing.Point(488, 816);
+            this.uI_Button_Number_Comma.Name = "uI_Button_Numbers_Comma";
+            this.uI_Button_Number_Comma.Size = new System.Drawing.Size(240, 100);
+            this.uI_Button_Number_Comma.TabIndex = 19;
+            this.uI_Button_Number_Comma.Text = ",";
+            this.uI_Button_Number_Comma.SizeChanged += new System.EventHandler(this.UI_Button_Numbers_SizeChanged);
+            this.uI_Button_Number_Comma.Click += new System.EventHandler(this.UI_Button_Numbers_Comma_Click);
             // 
             // uI_TextBox
             // 
@@ -409,7 +409,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1264, 921);
-            this.Controls.Add(this.uI_Button_Numbers_ChangeSign);
+            this.Controls.Add(this.uI_Button_Number_ChangeSign);
             this.Controls.Add(this.uI_Button_Operation_CE);
             this.Controls.Add(this.uI_Button_Operation_C);
             this.Controls.Add(this.uI_Button_Operation_Hyperbole);
@@ -418,7 +418,7 @@
             this.Controls.Add(this.uI_Button_Operation_Delete);
             this.Controls.Add(this.uI_Button_Operation_Square);
             this.Controls.Add(this.uI_Label);
-            this.Controls.Add(this.uI_Button_Numbers_Comma);
+            this.Controls.Add(this.uI_Button_Number_Comma);
             this.Controls.Add(this.uI_TextBox);
             this.Controls.Add(this.uI_Button_Operation_Multiplication);
             this.Controls.Add(this.uI_Button_Operation_Division);
@@ -467,7 +467,8 @@
         private UI_Button_Number uI_Button_Number9;
         private UI_Button_Number uI_Button_Number0;
 
-        private UI_Button_Number uI_Button_Numbers_Comma;
+        private UI_Button_Number uI_Button_Number_Comma;
+        private UI_Button_Number uI_Button_Number_ChangeSign;
 
         private UI_Button_Operation uI_Button_Operation_Addition;
         private UI_Button_Operation uI_Button_Operation_Subtraction;
@@ -481,7 +482,6 @@
         private UI_Button_Operation uI_Button_Operation_Hyperbole;
         private UI_Button_Operation uI_Button_Operation_C;
         private UI_Button_Operation uI_Button_Operation_CE;
-        private UI_Button_Number uI_Button_Numbers_ChangeSign;
     }
 }
 

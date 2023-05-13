@@ -49,6 +49,12 @@
     <Compile Include="Controls\UI_Button_Equals.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\UI_Button_Number.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\UI_Button_Operation.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\UI_Button_Operations.cs">
       <SubType>Component</SubType>
     </Compile>
