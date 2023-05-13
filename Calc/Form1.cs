@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Calc
 {
@@ -23,6 +25,11 @@ namespace Calc
         private const string warnAboutDivisionByZero = "Деление на ноль невозможно.";
 
         /// <summary>
+        /// Переменная, хранящая в себе промежуток между кнопками
+        /// </summary>
+        private int controlsMargin = 2;
+
+        /// <summary>
         /// Очищение строк и переменных, если вводится новое число после операции
         /// </summary>
         private bool isNewNumber;
@@ -34,6 +41,23 @@ namespace Calc
         /// Состояние, обозначающее завершённость операции над числами
         /// </summary>
         private bool isOperationGoingOn;
+
+        /// <summary>
+        /// Переменная, содержащая в себе изначальные размеры кнопки
+        /// </summary>
+        private Size originalButtonSize;
+        /// <summary>
+        /// Переменная, содержащая в себе изначальные размеры формы
+        /// </summary>
+        private Size originalFormSize;
+        /// <summary>
+        /// Переменная, содержащая в себе изначальные размеры текста
+        /// </summary>
+        private Size originalTextBoxSize;
+        /// <summary>
+        /// Переменная, содержащая в себе изначальные размеры текста
+        /// </summary>
+        private Size originalLabelSize;
 
         public Form()
         {
@@ -50,6 +74,14 @@ namespace Calc
 
             uI_Label.Text = "";
             uI_TextBox.Text = "0";
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            originalFormSize = new Size(Size.Width, Size.Height);
+            originalButtonSize = new Size(UI_Button_Numbers.buttonWidth, UI_Button_Numbers.buttonHeight);
+            originalTextBoxSize = new Size(UI_TextBox.textBoxWidth, UI_TextBox.textBoxHeight);
+            originalLabelSize = new Size(UI_Label.labelWidth, UI_Label.labelHeight);
         }
 
         #region События
@@ -463,9 +495,104 @@ namespace Calc
             uI_TextBox.Refresh();
         }
 
-        private void Form_SizeChanged(object sender, EventArgs e)
+        private void Form_Resize(object sender, EventArgs e)
         {
+            #region Арифметические операции
 
+            // Основные арифметические операции
+            ResizeControl(originalButtonSize, uI_Button_Operations_Division,        uI_Button_Operations_Division.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Multiplication,  uI_Button_Operations_Multiplication.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Subtraction,     uI_Button_Operations_Subtraction.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Addition,        uI_Button_Operations_Addition.originalLocation);
+
+            // Другие арифметические операции
+            ResizeControl(originalButtonSize, uI_Button_Operations_Hyperbole,   uI_Button_Operations_Hyperbole.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Modulo,      uI_Button_Operations_Modulo.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Square,      uI_Button_Operations_Square.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_SquareRoot,  uI_Button_Operations_SquareRoot.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers_ChangeSign,     uI_Button_Numbers_ChangeSign.originalLocation);
+
+            #endregion
+
+            #region Кнопки для стирания и эквивалентности 
+
+            ResizeControl(originalButtonSize, uI_Button_Operations_C,       uI_Button_Operations_C.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_CE,      uI_Button_Operations_CE.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Delete,  uI_Button_Operations_Delete.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers_Comma,      uI_Button_Numbers_Comma.originalLocation);
+
+            ResizeControl(originalButtonSize, uI_Button_Equals, uI_Button_Equals.originalLocation);
+
+            #endregion
+
+            #region Цифры
+
+            ResizeControl(originalButtonSize, uI_Button_Numbers0, uI_Button_Numbers0.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers1, uI_Button_Numbers1.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers2, uI_Button_Numbers2.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers3, uI_Button_Numbers3.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers4, uI_Button_Numbers4.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers5, uI_Button_Numbers5.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers6, uI_Button_Numbers6.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers7, uI_Button_Numbers7.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers8, uI_Button_Numbers8.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers9, uI_Button_Numbers9.originalLocation);
+
+            #endregion
+
+            #region Текста
+
+            // Текст и сноска
+            ResizeControl(originalTextBoxSize,  uI_TextBox,   uI_TextBox.originalLocation);
+            ResizeControl(originalLabelSize,    uI_Label,     uI_Label.originalLocation);
+
+            #endregion
+        }
+
+        private void UI_Button_Numbers_SizeChanged(object sender, EventArgs e)
+        {
+            #region Арифметические операции
+
+            // Основные арифметические операции
+            ResizeNumberControlFont(uI_Button_Operations_Addition);
+            ResizeNumberControlFont(uI_Button_Operations_Subtraction);
+            ResizeNumberControlFont(uI_Button_Operations_Multiplication);
+            ResizeNumberControlFont(uI_Button_Operations_Division);
+
+            // Другие арифметические операции
+            ResizeNumberControlFont(uI_Button_Operations_Hyperbole);
+            ResizeNumberControlFont(uI_Button_Operations_Modulo);
+            ResizeNumberControlFont(uI_Button_Operations_Square);
+            ResizeNumberControlFont(uI_Button_Operations_SquareRoot);
+            ResizeNumberControlFont(uI_Button_Numbers_ChangeSign);
+
+            #endregion
+
+            #region Кнопки для стирания и эквивалентности 
+
+            ResizeNumberControlFont(uI_Button_Operations_C);
+            ResizeNumberControlFont(uI_Button_Operations_CE);
+            ResizeNumberControlFont(uI_Button_Operations_Delete);
+            ResizeNumberControlFont(uI_Button_Numbers_Comma);
+
+            ResizeNumberControlFont(uI_Button_Equals);
+
+            #endregion
+
+            #region Цифры
+
+            ResizeNumberControlFont(uI_Button_Numbers0);
+            ResizeNumberControlFont(uI_Button_Numbers1);
+            ResizeNumberControlFont(uI_Button_Numbers2);
+            ResizeNumberControlFont(uI_Button_Numbers3);
+            ResizeNumberControlFont(uI_Button_Numbers4);
+            ResizeNumberControlFont(uI_Button_Numbers5);
+            ResizeNumberControlFont(uI_Button_Numbers6);
+            ResizeNumberControlFont(uI_Button_Numbers7);
+            ResizeNumberControlFont(uI_Button_Numbers8);
+            ResizeNumberControlFont(uI_Button_Numbers9);
+
+            #endregion
         }
 
         #endregion
@@ -499,7 +626,7 @@ namespace Calc
             return result;
         }
 
-        private double GetResult(string oper, double var)
+        private double GetResult(in string oper, in double var)
         {
             double result;
 
@@ -527,6 +654,42 @@ namespace Calc
             return result;
         }
 
+        private void ResizeControl(in Size size, Control ctrl, in Point origLocation)
+        {
+            // Отношение нынешних ширин и высот формы к изначальным размерам формы
+            double xRatio = (double)Width / (double)originalFormSize.Width;
+            double yRatio = (double)Height / (double)originalFormSize.Height;
+
+            // Позиция компонента
+            int newPosX = (int)(origLocation.X * xRatio);
+            int newPosY = (int)(origLocation.Y * yRatio);
+
+            // Размер компонента
+            int newButtonWidth = (int)(size.Width * xRatio);
+            int newButtonHeight = (int)(size.Height * yRatio);
+
+            ctrl.Location = new Point(newPosX, newPosY);
+            ctrl.Size = new Size(newButtonWidth, newButtonHeight);
+        }
+
         #endregion
+
+        private void ResizeNumberControlFont(Control ctrl)
+        {
+            if (Size.Width <= 640 && Size.Height <= 480)
+                ctrl.Font = new Font(ctrl.Font.FontFamily, 10F);
+
+            else if (Size.Width <= 1280 && Size.Width > 640 && Size.Height <= 720 && Size.Height > 480)
+                ctrl.Font = new Font(ctrl.Font.FontFamily, 15F);
+
+            else if (Size.Width <= 1600 && Size.Width > 1280 && Size.Height <= 900 && Size.Height > 720)
+                ctrl.Font = new Font(ctrl.Font.FontFamily, 20F);
+
+            else if (Size.Width <= 1920 && Size.Width > 1600 && Size.Height <= 1080 && Size.Height > 900)
+                ctrl.Font = new Font(ctrl.Font.FontFamily, 25F);
+
+            else if (Size.Width <= 2560 && Size.Width > 1920 && Size.Height <= 1440 && Size.Height > 1080)
+                ctrl.Font = new Font(ctrl.Font.FontFamily, 30F);
+        }
     }
 }

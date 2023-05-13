@@ -6,7 +6,16 @@ namespace Calc
 {
     internal class UI_Label : Control
     {
+        #region Переменные
+
         private StringFormat SF = new StringFormat();
+
+        public static int labelWidth = 450;
+        public static int labelHeight = 70;
+
+        public Point originalLocation;
+
+        #endregion
 
         public UI_Label()
         {
@@ -20,18 +29,18 @@ namespace Calc
             );
             DoubleBuffered = true;
 
-            Size = new Size(155, 90);
+            Size = new Size(labelWidth, labelHeight);
 
             BackColor = Color.FromArgb(32, 32, 32);
             ForeColor = Color.FromArgb(166, 166, 166);
-
-            Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right; 
 
             Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold);
 
             SF.Alignment = StringAlignment.Far;
             SF.LineAlignment = StringAlignment.Far;
         }
+
+        #region Отрисовка
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -52,6 +61,17 @@ namespace Calc
             graph.DrawString(Text, Font, new SolidBrush(ForeColor), rect, SF);
         }
 
+        #endregion
 
+        #region События
+
+        protected override void InitLayout()
+        {
+            base.InitLayout();
+
+            originalLocation = Location;
+        }
+
+        #endregion
     }
 }

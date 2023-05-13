@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Calc
@@ -12,13 +11,20 @@ namespace Calc
 
         private StringFormat SF;
 
+        public static int buttonWidth = 155;
+        public static int buttonHeight = 90;
+
+        private int cornerSize = 10;
+
         private bool MouseEntered;
 
-        Rectangle rect;
+        private Rectangle rect;
 
-        Color BoxColor;
-        Color FontColor;
-        Color BorderColor;
+        public Point originalLocation;
+
+        private Color BoxColor;
+        private Color FontColor;
+        private Color BorderColor;
 
         #endregion
 
@@ -37,14 +43,19 @@ namespace Calc
             );
             DoubleBuffered = true;
 
-            Size = new Size(155, 90);
+            AutoSize = true;
+
+            Size = new Size(buttonWidth, buttonHeight);
 
             BackColor = Color.FromArgb(89, 89, 89);
             ForeColor = Color.Black;
 
-            Font = new Font("Yu Gothic", 20F, FontStyle.Regular);
+            // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
+            BoxColor = BackColor;
+            FontColor = ForeColor;
+            BorderColor = Color.FromArgb(15, Color.White);
 
-            Anchor = AnchorStyles.Left;
+            Font = new Font("Yu Gothic", 20F, FontStyle.Regular);
 
             SF.Alignment = StringAlignment.Center;
             SF.LineAlignment = StringAlignment.Center;
@@ -61,7 +72,7 @@ namespace Calc
 
             rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
-            GraphicsPath path = MakeCornersRounded(rect, rect.Height - 80);
+            GraphicsPath path = MakeCornersRounded(rect, cornerSize);
 
             // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
             BoxColor = BackColor;
@@ -123,6 +134,13 @@ namespace Calc
             MouseEntered = false;
 
             Invalidate();
+        }
+
+        protected override void InitLayout()
+        {
+            base.InitLayout();
+
+            originalLocation = Location;
         }
 
         #endregion

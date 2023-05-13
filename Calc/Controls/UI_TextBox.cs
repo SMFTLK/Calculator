@@ -6,7 +6,16 @@ namespace Calc
 {
     public class UI_TextBox : Control
     {
+        #region Переменные
+
         private StringFormat SF = new StringFormat();
+
+        public static int textBoxWidth = 626;
+        public static int textBoxHeight = 125;
+
+        public Point originalLocation;
+
+        #endregion
 
         public UI_TextBox()
         {
@@ -20,18 +29,18 @@ namespace Calc
             );
             DoubleBuffered = true;
 
-            Size = new Size(155, 90);
+            Size = new Size(textBoxWidth, textBoxHeight);
 
             BackColor = Color.FromArgb(32, 32, 32);
             ForeColor = Color.White;
-
-            Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
 
             Font = new Font("Yu Gothic UI", 40F, FontStyle.Bold);
 
             SF.Alignment = StringAlignment.Far;
             SF.LineAlignment = StringAlignment.Center;
         }
+
+        #region Отрисовка
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -52,9 +61,17 @@ namespace Calc
             graph.DrawString(Text, Font, new SolidBrush(ForeColor), rect, SF);
         }
 
-        //private void FormResize(object sender, EventArgs e)
-        //{
-        //    Location = new Point(Width / 2, Height / 2);
-        //}
+        #endregion
+
+        #region События
+
+        protected override void InitLayout()
+        {
+            base.InitLayout();
+
+            originalLocation = Location;
+        }
+
+        #endregion
     }
 }

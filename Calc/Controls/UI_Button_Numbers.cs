@@ -11,13 +11,22 @@ namespace Calc
 
         private StringFormat SF;
 
+        public static int buttonWidth = 155;
+        public static int buttonHeight = 90;
+
+        private int cornerSize = 10;
+
+        public float fontSize = 20F;
+
         private bool MouseEntered;
 
-        Rectangle rect;
+        private Rectangle rect;
 
-        Color BoxColor;
-        Color FontColor;
-        Color BorderColor;
+        public Point originalLocation;
+
+        private Color BoxColor;
+        private Color FontColor;
+        private Color BorderColor;
 
         #endregion
 
@@ -36,14 +45,14 @@ namespace Calc
             );
             DoubleBuffered = true;
 
-            Size = new Size(155, 90);
+            AutoSize = true;
+
+            Size = new Size(buttonWidth, buttonHeight);
 
             BackColor = Color.FromArgb(59, 59, 59);
             ForeColor = Color.White;
 
-            Font = new Font("Yu Gothic UI", 20F, FontStyle.Bold);
-
-            Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+            Font = new Font("Yu Gothic UI", fontSize, FontStyle.Bold);
 
             SF.Alignment = StringAlignment.Center;
             SF.LineAlignment = StringAlignment.Center;
@@ -58,11 +67,9 @@ namespace Calc
             graph.SmoothingMode = SmoothingMode.HighQuality;
             graph.Clear(Parent.BackColor);
 
-            // Resize += new EventHandler(FormResize);
-
             rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
-            GraphicsPath path = MakeCornersRounded(rect, rect.Height - 80);
+            GraphicsPath path = MakeCornersRounded(rect, cornerSize);
 
             // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
             BoxColor = BackColor;
@@ -127,12 +134,13 @@ namespace Calc
             Invalidate();
         }
 
-        #endregion
-
-
-        private void FormResize(object sender, EventArgs e)
+        protected override void InitLayout()
         {
-            Location = new Point(Width / 2, Height / 2);
+            base.InitLayout();
+
+            originalLocation = Location;
         }
+
+        #endregion
     }
 }
