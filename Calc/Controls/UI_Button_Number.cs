@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Calc
 {
-    public class UI_Button_Numbers : Control
+    public class UI_Button_Number : Control
     {
         #region Переменные
 
@@ -29,7 +29,7 @@ namespace Calc
 
         #endregion
 
-        public UI_Button_Numbers()
+        public UI_Button_Number()
         {
             SF = new StringFormat();
             MouseEntered = false;
