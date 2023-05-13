@@ -94,7 +94,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Numbers_Click(object sender, EventArgs e)
+        private void UI_Button_Number_Click(object sender, EventArgs e)
         {
             // Отправитель (кнопка)
             UI_Button_Number B = (UI_Button_Number)sender;
@@ -138,7 +138,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Operations_Click(object sender, EventArgs e)
+        private void UI_Button_Operation_Click(object sender, EventArgs e)
         {
             // Отправитель (кнопка)
             UI_Button_Operation B = (UI_Button_Operation)sender;
@@ -306,7 +306,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Numbers_Comma_Click(object sender, EventArgs e)
+        private void UI_Button_Number_Comma_Click(object sender, EventArgs e)
         {
             UI_Button_Number B = (UI_Button_Number)sender;
 
@@ -321,7 +321,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Operations_C_Click(object sender, EventArgs e)
+        private void UI_Button_Operation_C_Click(object sender, EventArgs e)
         {
             uI_TextBox.Text = "0";
             leftValue = "0";
@@ -343,7 +343,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Operations_CE_Click(object sender, EventArgs e)
+        private void UI_Button_Operation_CE_Click(object sender, EventArgs e)
         {
             uI_TextBox.Text = "0";
 
@@ -355,7 +355,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Operations_Square_Click(object sender, EventArgs e)
+        private void UI_Button_Operation_Square_Click(object sender, EventArgs e)
         {
             double result;
             result = Convert.ToDouble(uI_TextBox.Text) * Convert.ToDouble(uI_TextBox.Text);
@@ -374,7 +374,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Numbers_ChangeSign_Click(object sender, EventArgs e)
+        private void UI_Button_Number_ChangeSign_Click(object sender, EventArgs e)
         {
             double result;
             result = Convert.ToDouble(uI_TextBox.Text);
@@ -393,7 +393,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Operations_Hyperbole_Click(object sender, EventArgs e)
+        private void UI_Button_Operation_Hyperbole_Click(object sender, EventArgs e)
         {
             double result;
 
@@ -419,7 +419,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Operations_SquareRoot_Click(object sender, EventArgs e)
+        private void UI_Button_Operation_SquareRoot_Click(object sender, EventArgs e)
         {
             double result;
             result = Math.Sqrt(Convert.ToDouble(uI_TextBox.Text));
@@ -438,7 +438,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Operations_Delete_Click(object sender, EventArgs e)
+        private void UI_Button_Operation_Delete_Click(object sender, EventArgs e)
         {
             if (uI_TextBox.Text == warnAboutDivisionByZero)
                 uI_TextBox.Text = "0";
@@ -462,7 +462,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Numbers_SizeChanged(object sender, EventArgs e)
+        private void UI_Button_Number_SizeChanged(object sender, EventArgs e)
         {
 
             #region Кнопка запятой и эквивалентности
@@ -493,7 +493,7 @@ namespace Calc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UI_Button_Operations_SizeChanged(object sender, EventArgs e)
+        private void UI_Button_Operation_SizeChanged(object sender, EventArgs e)
         {
             #region Арифметические операции
 
@@ -521,6 +521,11 @@ namespace Calc
             #endregion
         }
 
+        /// <summary>
+        /// Событие, при котором изменяется размер шрифта у текста
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UI_Button_Texts_SizeChanged(object sender, EventArgs e)
         {
             ResizeTextBoxFont(uI_TextBox);
@@ -573,7 +578,6 @@ namespace Calc
                 uI_Button_Equals.Enabled = true;
             }
         }
-
         
         private void Form_Resize(object sender, EventArgs e)
         {
