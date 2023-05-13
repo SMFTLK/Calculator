@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Calc
 {
@@ -139,7 +140,7 @@ namespace Calc
         {
             // Отправитель (кнопка)
             UI_Button_Operations B = (UI_Button_Operations)sender;
-            
+
             // При вызове события нажатия кнопки операции в переменную operation записывается арифм. операция кнопки
             operation = B.Text;
 
@@ -170,42 +171,42 @@ namespace Calc
                         leftValue = (Convert.ToDouble(leftValue) + Convert.ToDouble(uI_TextBox.Text)).ToString(); break;
 
                     case "−":
-                    {
-                        if (leftValue == "0")
-                            leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString();
-                        else
-                            leftValue = (Convert.ToDouble(leftValue) - Convert.ToDouble(uI_TextBox.Text)).ToString();
+                        {
+                            if (leftValue == "0")
+                                leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString();
+                            else
+                                leftValue = (Convert.ToDouble(leftValue) - Convert.ToDouble(uI_TextBox.Text)).ToString();
 
-                        operation = "-";
-                        break;
-                    }
+                            operation = "-";
+                            break;
+                        }
                     case "×":
-                    {
-                        if (leftValue == "0")
-                            leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString();
-                        else
-                            leftValue = (Convert.ToDouble(leftValue) * Convert.ToDouble(uI_TextBox.Text)).ToString();
+                        {
+                            if (leftValue == "0")
+                                leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString();
+                            else
+                                leftValue = (Convert.ToDouble(leftValue) * Convert.ToDouble(uI_TextBox.Text)).ToString();
 
-                        break;
-                    }
+                            break;
+                        }
                     case "÷":
-                    {
-                        if (leftValue == "0")
-                            leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString();
-                        else
-                            leftValue = (Convert.ToDouble(leftValue) / Convert.ToDouble(uI_TextBox.Text)).ToString();
+                        {
+                            if (leftValue == "0")
+                                leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString();
+                            else
+                                leftValue = (Convert.ToDouble(leftValue) / Convert.ToDouble(uI_TextBox.Text)).ToString();
 
-                        break;
-                    }
+                            break;
+                        }
                     case "%":
-                    {
-                        if (leftValue == "0")
-                            leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString();
-                        else
-                            leftValue = (Convert.ToDouble(leftValue) * Convert.ToDouble(uI_TextBox.Text) / 100).ToString();
-                        
-                        break;
-                    }
+                        {
+                            if (leftValue == "0")
+                                leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString();
+                            else
+                                leftValue = (Convert.ToDouble(leftValue) * Convert.ToDouble(uI_TextBox.Text) / 100).ToString();
+
+                            break;
+                        }
                     default:
 
                         leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString(); break;
@@ -375,7 +376,7 @@ namespace Calc
         {
             double result;
             result = Convert.ToDouble(uI_TextBox.Text);
-            
+
             if (leftValue == "0")
                 uI_Label.Text = "-(" + uI_TextBox.Text + ") =";
 
@@ -500,26 +501,26 @@ namespace Calc
             #region Арифметические операции
 
             // Основные арифметические операции
-            ResizeControl(originalButtonSize, uI_Button_Operations_Division,        uI_Button_Operations_Division.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Operations_Multiplication,  uI_Button_Operations_Multiplication.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Operations_Subtraction,     uI_Button_Operations_Subtraction.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Operations_Addition,        uI_Button_Operations_Addition.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Division, uI_Button_Operations_Division.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Multiplication, uI_Button_Operations_Multiplication.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Subtraction, uI_Button_Operations_Subtraction.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Addition, uI_Button_Operations_Addition.originalLocation);
 
             // Другие арифметические операции
-            ResizeControl(originalButtonSize, uI_Button_Operations_Hyperbole,   uI_Button_Operations_Hyperbole.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Operations_Modulo,      uI_Button_Operations_Modulo.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Operations_Square,      uI_Button_Operations_Square.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Operations_SquareRoot,  uI_Button_Operations_SquareRoot.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Numbers_ChangeSign,     uI_Button_Numbers_ChangeSign.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Hyperbole, uI_Button_Operations_Hyperbole.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Modulo, uI_Button_Operations_Modulo.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Square, uI_Button_Operations_Square.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_SquareRoot, uI_Button_Operations_SquareRoot.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers_ChangeSign, uI_Button_Numbers_ChangeSign.originalLocation);
 
             #endregion
 
             #region Кнопки для стирания и эквивалентности 
 
-            ResizeControl(originalButtonSize, uI_Button_Operations_C,       uI_Button_Operations_C.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Operations_CE,      uI_Button_Operations_CE.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Operations_Delete,  uI_Button_Operations_Delete.originalLocation);
-            ResizeControl(originalButtonSize, uI_Button_Numbers_Comma,      uI_Button_Numbers_Comma.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_C, uI_Button_Operations_C.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_CE, uI_Button_Operations_CE.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operations_Delete, uI_Button_Operations_Delete.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Numbers_Comma, uI_Button_Numbers_Comma.originalLocation);
 
             ResizeControl(originalButtonSize, uI_Button_Equals, uI_Button_Equals.originalLocation);
 
@@ -540,11 +541,11 @@ namespace Calc
 
             #endregion
 
-            #region Текста
+            #region Текст
 
             // Текст и сноска
-            ResizeControl(originalTextBoxSize,  uI_TextBox,   uI_TextBox.originalLocation);
-            ResizeControl(originalLabelSize,    uI_Label,     uI_Label.originalLocation);
+            ResizeControl(originalTextBoxSize, uI_TextBox, uI_TextBox.originalLocation);
+            ResizeControl(originalLabelSize, uI_Label, uI_Label.originalLocation);
 
             #endregion
         }
@@ -554,43 +555,51 @@ namespace Calc
             #region Арифметические операции
 
             // Основные арифметические операции
-            ResizeNumberControlFont(uI_Button_Operations_Addition);
-            ResizeNumberControlFont(uI_Button_Operations_Subtraction);
-            ResizeNumberControlFont(uI_Button_Operations_Multiplication);
-            ResizeNumberControlFont(uI_Button_Operations_Division);
+            ResizeNumberFont(uI_Button_Operations_Addition);
+            ResizeNumberFont(uI_Button_Operations_Subtraction);
+            ResizeNumberFont(uI_Button_Operations_Multiplication);
+            ResizeNumberFont(uI_Button_Operations_Division);
 
             // Другие арифметические операции
-            ResizeNumberControlFont(uI_Button_Operations_Hyperbole);
-            ResizeNumberControlFont(uI_Button_Operations_Modulo);
-            ResizeNumberControlFont(uI_Button_Operations_Square);
-            ResizeNumberControlFont(uI_Button_Operations_SquareRoot);
-            ResizeNumberControlFont(uI_Button_Numbers_ChangeSign);
+            ResizeNumberFont(uI_Button_Operations_Hyperbole);
+            ResizeNumberFont(uI_Button_Operations_Modulo);
+            ResizeNumberFont(uI_Button_Operations_Square);
+            ResizeNumberFont(uI_Button_Operations_SquareRoot);
+            ResizeNumberFont(uI_Button_Numbers_ChangeSign);
 
             #endregion
 
             #region Кнопки для стирания и эквивалентности 
 
-            ResizeNumberControlFont(uI_Button_Operations_C);
-            ResizeNumberControlFont(uI_Button_Operations_CE);
-            ResizeNumberControlFont(uI_Button_Operations_Delete);
-            ResizeNumberControlFont(uI_Button_Numbers_Comma);
+            ResizeNumberFont(uI_Button_Operations_C);
+            ResizeNumberFont(uI_Button_Operations_CE);
+            ResizeNumberFont(uI_Button_Operations_Delete);
+            ResizeNumberFont(uI_Button_Numbers_Comma);
 
-            ResizeNumberControlFont(uI_Button_Equals);
+            ResizeNumberFont(uI_Button_Equals);
 
             #endregion
 
             #region Цифры
 
-            ResizeNumberControlFont(uI_Button_Numbers0);
-            ResizeNumberControlFont(uI_Button_Numbers1);
-            ResizeNumberControlFont(uI_Button_Numbers2);
-            ResizeNumberControlFont(uI_Button_Numbers3);
-            ResizeNumberControlFont(uI_Button_Numbers4);
-            ResizeNumberControlFont(uI_Button_Numbers5);
-            ResizeNumberControlFont(uI_Button_Numbers6);
-            ResizeNumberControlFont(uI_Button_Numbers7);
-            ResizeNumberControlFont(uI_Button_Numbers8);
-            ResizeNumberControlFont(uI_Button_Numbers9);
+            ResizeNumberFont(uI_Button_Numbers0);
+            ResizeNumberFont(uI_Button_Numbers1);
+            ResizeNumberFont(uI_Button_Numbers2);
+            ResizeNumberFont(uI_Button_Numbers3);
+            ResizeNumberFont(uI_Button_Numbers4);
+            ResizeNumberFont(uI_Button_Numbers5);
+            ResizeNumberFont(uI_Button_Numbers6);
+            ResizeNumberFont(uI_Button_Numbers7);
+            ResizeNumberFont(uI_Button_Numbers8);
+            ResizeNumberFont(uI_Button_Numbers9);
+
+            #endregion
+
+            #region Текст
+
+            ResizeTextBoxFont(uI_TextBox);
+
+            ResizeLabelFont(uI_Label);
 
             #endregion
         }
@@ -672,24 +681,59 @@ namespace Calc
             ctrl.Size = new Size(newButtonWidth, newButtonHeight);
         }
 
-        #endregion
-
-        private void ResizeNumberControlFont(Control ctrl)
+        private void ResizeNumberFont(Control button)
         {
-            if (Width <= 640 && Height <= 480)
-                ctrl.Font = new Font(ctrl.Font.FontFamily, 10F);
+            if (WindowState == FormWindowState.Maximized)
+                button.Font = new Font(button.Font.FontFamily, 30F);
 
-            else if (Width <= 1280 && Width > 640 && Height <= 720 && Height > 480)
-                ctrl.Font = new Font(ctrl.Font.FontFamily, 15F);
+            else if (Width <= 640 || Height <= 480)
+                button.Font = new Font(button.Font.FontFamily, 10F);
 
-            else if (Width <= 1600 && Width > 1280 && Height <= 900 && Height > 720)
-                ctrl.Font = new Font(ctrl.Font.FontFamily, 20F);
+            else if ((Width <= 1280 && Width >= 640) || (Height <= 720 && Height >= 480))
+                button.Font = new Font(button.Font.FontFamily, 15F);
 
-            else if (Width <= 1920 && Width > 1600 && Height <= 1080 && Height > 900)
-                ctrl.Font = new Font(ctrl.Font.FontFamily, 25F);
+            else if ((Width <= 1600 && Width > 1280) || (Height <= 900 && Height > 720))
+                button.Font = new Font(button.Font.FontFamily, 20F);
 
-            else if (Width <= 2560 && Width > 1920 && Height <= 1440 && Height > 1080)
-                ctrl.Font = new Font(ctrl.Font.FontFamily, 30F);
+            else if ((Width <= 1920 && Width > 1600) || (Height <= 1080 && Height > 900))
+                button.Font = new Font(button.Font.FontFamily, 25F);
+
+            else if ((Width <= 2560 && Width > 1920) || (Height <= 1440 && Height > 1080))
+                button.Font = new Font(button.Font.FontFamily, 30F);
         }
+
+        private void ResizeTextBoxFont(Control text)
+        {
+            if (WindowState == FormWindowState.Maximized)
+                text.Font = new Font(text.Font.FontFamily, 60F);
+
+            else if (Width <= 640 || Height <= 480)
+                text.Font = new Font(text.Font.FontFamily, 20F);
+
+            else if ((Width <= 1280 && Width >= 640) || (Height <= 720 && Height >= 480))
+                text.Font = new Font(text.Font.FontFamily, 30F);
+
+            else if ((Width <= 1600 && Width > 1280) || (Height <= 900 && Height > 720))
+                text.Font = new Font(text.Font.FontFamily, 45F);
+
+            else if ((Width <= 1920 && Width > 1600) || (Height <= 1080 && Height > 900))
+                text.Font = new Font(text.Font.FontFamily, 50F);
+
+            else if ((Width <= 2560 && Width > 1920) || (Height <= 1440 && Height > 1080))
+                text.Font = new Font(text.Font.FontFamily, 60F);
+        }
+
+        private void ResizeLabelFont(Control label)
+        {
+            if (WindowState == FormWindowState.Maximized)
+                label.Font = new Font(label.Font.FontFamily, 30F);
+
+            else if ((Width <= 1600 && Width > 1280) || (Height <= 900 && Height > 720))
+                label.Font = new Font(label.Font.FontFamily, 15F);
+
+            else if ((Width <= 2560 && Width > 1920) || (Height <= 1440 && Height > 1080))
+                label.Font = new Font(label.Font.FontFamily, 30F);
+        }
+        #endregion
     }
 }

@@ -13,6 +13,8 @@ namespace Calc
         public static int labelWidth;
         public static int labelHeight;
 
+        private const float fontSize = 10F;
+
         public Point originalLocation;
 
         #endregion
@@ -32,7 +34,7 @@ namespace Calc
             BackColor = Color.FromArgb(32, 32, 32);
             ForeColor = Color.FromArgb(166, 166, 166);
 
-            Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold);
+            Font = new Font("Yu Gothic UI", fontSize, FontStyle.Bold);
 
             SF.Alignment = StringAlignment.Far;
             SF.LineAlignment = StringAlignment.Far;
@@ -56,6 +58,7 @@ namespace Calc
             graph.DrawRectangle(new Pen(BackColor), rect);
             graph.FillRectangle(new SolidBrush(BackColor), rect);
 
+            graph.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             graph.DrawString(Text, Font, new SolidBrush(ForeColor), rect, SF);
         }
 

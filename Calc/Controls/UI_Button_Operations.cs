@@ -14,7 +14,8 @@ namespace Calc
         public static int buttonWidth;
         public static int buttonHeight;
 
-        private int cornerSize = 10;
+        private const int cornerSize = 10;
+        private const float fontSize = 20F;
 
         private bool MouseEntered;
 
@@ -48,7 +49,7 @@ namespace Calc
             BackColor = Color.FromArgb(50, 50, 50);
             ForeColor = Color.White;
 
-            Font = new Font("Yu Gothic", 20F, FontStyle.Regular);
+            Font = new Font("Yu Gothic", fontSize, FontStyle.Regular);
 
             SF.Alignment = StringAlignment.Center;
             SF.LineAlignment = StringAlignment.Center;
@@ -86,6 +87,7 @@ namespace Calc
             graph.FillPath(new SolidBrush(BoxColor), path);
             graph.DrawPath(new Pen(BorderColor), path);
 
+            graph.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             graph.DrawString(Text, Font, new SolidBrush(FontColor), rect, SF);
         }
 

@@ -14,9 +14,8 @@ namespace Calc
         public static int buttonWidth;
         public static int buttonHeight;
 
-        private int cornerSize = 10;
-
-        public float fontSize = 20F;
+        private const int cornerSize = 10;
+        public const float fontSize = 20F;
 
         private bool MouseEntered;
 
@@ -87,6 +86,7 @@ namespace Calc
             graph.FillPath(new SolidBrush(BoxColor), path);
             graph.DrawPath(new Pen(BorderColor), path);
 
+            graph.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             graph.DrawString(Text, Font, new SolidBrush(FontColor), rect, SF);
         }
 

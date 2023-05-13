@@ -443,7 +443,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Счёты цифровые";
             this.Load += new System.EventHandler(this.Form_Load);
-            this.Resize += new System.EventHandler(this.Form_Resize);
+            this.SizeChanged += new System.EventHandler(this.Form_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
