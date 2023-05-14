@@ -61,7 +61,7 @@ namespace Calc
             base.OnPaint(e);
 
             Graphics graph = e.Graphics;
-            graph.SmoothingMode = SmoothingMode.HighQuality;
+            graph.SmoothingMode = SmoothingMode.AntiAlias;
             graph.Clear(Parent.BackColor);
 
             rect = new Rectangle(0, 0, Width - 1, Height - 1);

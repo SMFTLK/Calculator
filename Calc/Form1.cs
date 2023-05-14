@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Calc
 {
@@ -24,11 +23,6 @@ namespace Calc
         /// Переменная для исключения деления на ноль
         /// </summary>
         private const string warnAboutDivisionByZero = "Деление на ноль невозможно.";
-
-        /// <summary>
-        /// Переменная, хранящая в себе промежуток между кнопками
-        /// </summary>
-        private int controlsMargin = 2;
 
         /// <summary>
         /// Очищение строк и переменных, если вводится новое число после операции
@@ -222,7 +216,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Кнопка "равняется" для завершения арифметической операции
+        /// Равно
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -302,7 +296,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Кнопка "запятая"
+        /// Запятая
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -317,7 +311,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Кнопка "С"
+        /// С
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -339,7 +333,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Кнопка "СЕ"
+        /// СЕ
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -351,7 +345,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Кнопка "Возвести в квадрат"
+        /// Возвести в квадрат
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -370,7 +364,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Кнопка "Поменять знак"
+        /// Поменять знак
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -389,7 +383,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Кнопка "Возвести в степень -1"
+        /// Возвести в степень -1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -415,7 +409,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Кнопка "Возвести в корень второй степени"
+        /// Корень второй степени
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -434,7 +428,7 @@ namespace Calc
         }
 
         /// <summary>
-        /// Кнопка "D"
+        /// Delete
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -451,6 +445,124 @@ namespace Calc
             }
 
             uI_TextBox.Refresh();
+        }
+
+        /// <summary>
+        /// Sin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UI_Button_Operation_Sin_Click(object sender, EventArgs e)
+        {
+            double result;
+            result = Math.Sin(Convert.ToDouble(uI_TextBox.Text));
+
+            uI_Label.Text = "sin(" + uI_TextBox.Text + ") =";
+            uI_TextBox.Text = result.ToString();
+
+            uI_TextBox.Refresh();
+            uI_Label.Refresh();
+
+            isNewNumber = false;
+        }
+
+        /// <summary>
+        /// Cos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UI_Button_Operation_Cos_Click(object sender, EventArgs e)
+        {
+            double result;
+            result = Math.Cos(Convert.ToDouble(uI_TextBox.Text));
+
+            uI_Label.Text = "cos(" + uI_TextBox.Text + ") =";
+            uI_TextBox.Text = result.ToString();
+
+            uI_TextBox.Refresh();
+            uI_Label.Refresh();
+
+            isNewNumber = false;
+        }
+
+        /// <summary>
+        /// Tang
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UI_Button_Operation_Tg_Click(object sender, EventArgs e)
+        {
+            double result;
+            result = Math.Tan(Convert.ToDouble(uI_TextBox.Text));
+
+            uI_Label.Text = "tg(" + uI_TextBox.Text + ") =";
+            uI_TextBox.Text = result.ToString();
+
+            uI_TextBox.Refresh();
+            uI_Label.Refresh();
+
+            isNewNumber = false;
+        }
+
+        /// <summary>
+        /// Abs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UI_Button_Operation_Abs_Click(object sender, EventArgs e)
+        {
+            double result;
+            result = Math.Abs(Convert.ToDouble(uI_TextBox.Text));
+
+            uI_Label.Text = "|" + uI_TextBox.Text + "| =";
+            uI_TextBox.Text = result.ToString();
+
+            uI_TextBox.Refresh();
+            uI_Label.Refresh();
+
+            isNewNumber = false;
+        }
+
+        /// <summary>
+        /// Cotang
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UI_Button_Operation_Ctg_Click(object sender, EventArgs e)
+        {
+            double result;
+            result = 1 / Math.Tan(Convert.ToDouble(uI_TextBox.Text));
+
+            uI_Label.Text = "ctg(" + uI_TextBox.Text + ") =";
+            uI_TextBox.Text = result.ToString();
+
+            uI_TextBox.Refresh();
+            uI_Label.Refresh();
+
+            isNewNumber = false;
+        }
+
+        /// <summary>
+        /// Factorial
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UI_Button_Operation_Fact_Click(object sender, EventArgs e)
+        {
+            double result = 1.0;
+
+            for (int i = Convert.ToInt32(uI_TextBox.Text); i > 1; i--)
+            {
+                result *= i;
+            }
+
+            uI_Label.Text = uI_TextBox.Text + "! =";
+            uI_TextBox.Text = result.ToString();
+
+            uI_TextBox.Refresh();
+            uI_Label.Refresh();
+
+            isNewNumber = false;
         }
 
         #endregion
@@ -512,6 +624,15 @@ namespace Calc
 
             #endregion
 
+            #region Тригонометрические функции
+
+            ResizeNumberFont(uI_Button_Operation_Sin);
+            ResizeNumberFont(uI_Button_Operation_Cos);
+            ResizeNumberFont(uI_Button_Operation_Tg);
+            ResizeNumberFont(uI_Button_Operation_Ctg);
+
+            #endregion
+
             #region Кнопки для стирания
 
             ResizeNumberFont(uI_Button_Operation_C);
@@ -519,6 +640,9 @@ namespace Calc
             ResizeNumberFont(uI_Button_Operation_Delete);
 
             #endregion
+
+            ResizeNumberFont(uI_Button_Operation_Abs);
+            ResizeNumberFont(uI_Button_Operation_Fact);
         }
 
         /// <summary>
@@ -545,37 +669,37 @@ namespace Calc
 
             if (T.Text == warnAboutDivisionByZero)
             {
-                uI_Button_Number_ChangeSign.Enabled = false;
-                uI_Button_Number_Comma.Enabled = false;
+                uI_Button_Number_ChangeSign.Enabled         = false;
+                uI_Button_Number_Comma.Enabled              = false;
 
-                uI_Button_Operation_Addition.Enabled = false;
-                uI_Button_Operation_Division.Enabled = false;
-                uI_Button_Operation_Multiplication.Enabled = false;
-                uI_Button_Operation_Subtraction.Enabled = false;
+                uI_Button_Operation_Addition.Enabled        = false;
+                uI_Button_Operation_Division.Enabled        = false;
+                uI_Button_Operation_Multiplication.Enabled  = false;
+                uI_Button_Operation_Subtraction.Enabled     = false;
 
-                uI_Button_Operation_Hyperbole.Enabled = false;
-                uI_Button_Operation_Modulo.Enabled = false;
-                uI_Button_Operation_Square.Enabled = false;
-                uI_Button_Operation_SquareRoot.Enabled = false;
+                uI_Button_Operation_Hyperbole.Enabled       = false;
+                uI_Button_Operation_Modulo.Enabled          = false;
+                uI_Button_Operation_Square.Enabled          = false;
+                uI_Button_Operation_SquareRoot.Enabled      = false;
 
-                uI_Button_Equals.Enabled = false;
+                uI_Button_Equals.Enabled                    = false;
             }
             else
             {
-                uI_Button_Number_ChangeSign.Enabled = true;
-                uI_Button_Number_Comma.Enabled = true;
+                uI_Button_Number_ChangeSign.Enabled         = true;
+                uI_Button_Number_Comma.Enabled              = true;
 
-                uI_Button_Operation_Addition.Enabled = true;
-                uI_Button_Operation_Division.Enabled = true;
-                uI_Button_Operation_Multiplication.Enabled = true;
-                uI_Button_Operation_Subtraction.Enabled = true;
+                uI_Button_Operation_Addition.Enabled        = true;
+                uI_Button_Operation_Division.Enabled        = true;
+                uI_Button_Operation_Multiplication.Enabled  = true;
+                uI_Button_Operation_Subtraction.Enabled     = true;
 
-                uI_Button_Operation_Hyperbole.Enabled = true;
-                uI_Button_Operation_Modulo.Enabled = true;
-                uI_Button_Operation_Square.Enabled = true;
-                uI_Button_Operation_SquareRoot.Enabled = true;
+                uI_Button_Operation_Hyperbole.Enabled       = true;
+                uI_Button_Operation_Modulo.Enabled          = true;
+                uI_Button_Operation_Square.Enabled          = true;
+                uI_Button_Operation_SquareRoot.Enabled      = true;
 
-                uI_Button_Equals.Enabled = true;
+                uI_Button_Equals.Enabled                    = true;
             }
         }
         
@@ -597,6 +721,19 @@ namespace Calc
             ResizeControl(originalButtonSize, uI_Button_Number_ChangeSign, uI_Button_Number_ChangeSign.originalLocation);
 
             #endregion
+
+            #region Тригонометрические функции
+
+            ResizeControl(originalButtonSize, uI_Button_Operation_Sin, uI_Button_Operation_Sin.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Cos, uI_Button_Operation_Cos.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Tg, uI_Button_Operation_Tg.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Ctg, uI_Button_Operation_Ctg.originalLocation);
+
+            #endregion
+
+            ResizeControl(originalButtonSize, uI_Button_Operation_Abs, uI_Button_Operation_Abs.originalLocation);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Fact, uI_Button_Operation_Fact.originalLocation);
+
 
             #region Кнопки для стирания и эквивалентности 
 
@@ -696,8 +833,8 @@ namespace Calc
         private void ResizeControl(in Size size, Control ctrl, in Point origLocation)
         {
             // Отношение нынешних ширин и высот формы к изначальным размерам формы
-            double xRatio = (double)Width / (double)originalFormSize.Width;
-            double yRatio = (double)Height / (double)originalFormSize.Height;
+            float xRatio = (float)Width / (float)originalFormSize.Width;
+            float yRatio = (float)Height / (float)originalFormSize.Height;
 
             // Позиция компонента
             int newPosX = (int)(origLocation.X * xRatio);
@@ -716,10 +853,7 @@ namespace Calc
             if (WindowState == FormWindowState.Maximized)
                 button.Font = new Font(button.Font.FontFamily, 30F);
 
-            else if (Width <= 640 || Height <= 480)
-                button.Font = new Font(button.Font.FontFamily, 10F);
-
-            else if ((Width <= 1280 && Width >= 640) || (Height <= 720 && Height >= 480))
+            else if (Width <= 1280 || Height <= 720)
                 button.Font = new Font(button.Font.FontFamily, 15F);
 
             else if ((Width <= 1600 && Width > 1280) || (Height <= 900 && Height > 720))
@@ -737,10 +871,7 @@ namespace Calc
             if (WindowState == FormWindowState.Maximized)
                 text.Font = new Font(text.Font.FontFamily, 60F);
 
-            else if (Width <= 640 || Height <= 480)
-                text.Font = new Font(text.Font.FontFamily, 20F);
-
-            else if ((Width <= 1280 && Width >= 640) || (Height <= 720 && Height >= 480))
+            else if (Width <= 1280 || Height <= 720)
                 text.Font = new Font(text.Font.FontFamily, 30F);
 
             else if ((Width <= 1600 && Width > 1280) || (Height <= 900 && Height > 720))
@@ -764,7 +895,102 @@ namespace Calc
             else if ((Width <= 2560 && Width > 1920) || (Height <= 1440 && Height > 1080))
                 label.Font = new Font(label.Font.FontFamily, 30F);
         }
-        
+
+        #endregion
+
+        #region Режимы
+
+        private void ИнженерныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            originalButtonSize = new Size(187, 80);
+            Width = 1280;
+            Height = 960;
+
+            uI_Button_Operation_Cos.Visible     = true;
+            uI_Button_Operation_Sin.Visible     = true;
+            uI_Button_Operation_Tg.Visible      = true;
+            uI_Button_Operation_Ctg.Visible     = true;
+            uI_Button_Operation_Fact.Visible    = true;
+            uI_Button_Operation_Abs.Visible     = true;
+
+            uI_Button_Operation_Fact.Location           = uI_Button_Operation_Fact.originalLocation             = new Point(4, 427);
+            uI_Button_Operation_Abs.Location            = uI_Button_Operation_Abs.originalLocation              = new Point(4, 509);
+            uI_Button_Operation_Ctg.Location            = uI_Button_Operation_Ctg.originalLocation              = new Point(4, 591);
+            uI_Button_Operation_Tg.Location             = uI_Button_Operation_Tg.originalLocation               = new Point(4, 673);
+            uI_Button_Operation_Cos.Location            = uI_Button_Operation_Cos.originalLocation              = new Point(4, 755);
+            uI_Button_Operation_Sin.Location            = uI_Button_Operation_Sin.originalLocation              = new Point(4, 837);
+
+            uI_Button_Operation_Modulo.Location         = uI_Button_Operation_Modulo.originalLocation           = new Point(193, 427);
+            uI_Button_Operation_Hyperbole.Location      = uI_Button_Operation_Hyperbole.originalLocation        = new Point(193, 509);
+            uI_Button_Number7.Location                  = uI_Button_Number7.originalLocation                    = new Point(193, 591);
+            uI_Button_Number4.Location                  = uI_Button_Number4.originalLocation                    = new Point(193, 673);
+            uI_Button_Number1.Location                  = uI_Button_Number1.originalLocation                    = new Point(193, 755);
+            uI_Button_Number_ChangeSign.Location        = uI_Button_Number_ChangeSign.originalLocation          = new Point(193, 837);
+
+            uI_Button_Operation_C.Location              = uI_Button_Operation_C.originalLocation                = new Point(382, 427);
+            uI_Button_Operation_Square.Location         = uI_Button_Operation_Square.originalLocation           = new Point(382, 509);
+            uI_Button_Number8.Location                  = uI_Button_Number8.originalLocation                    = new Point(382, 591);
+            uI_Button_Number5.Location                  = uI_Button_Number5.originalLocation                    = new Point(382, 673);
+            uI_Button_Number2.Location                  = uI_Button_Number2.originalLocation                    = new Point(382, 755);
+            uI_Button_Number0.Location                  = uI_Button_Number0.originalLocation                    = new Point(382, 837);
+
+            uI_Button_Operation_CE.Location             = uI_Button_Operation_CE.originalLocation               = new Point(571, 427);
+            uI_Button_Operation_SquareRoot.Location     = uI_Button_Operation_SquareRoot.originalLocation       = new Point(571, 509);
+            uI_Button_Number9.Location                  = uI_Button_Number9.originalLocation                    = new Point(571, 591);
+            uI_Button_Number6.Location                  = uI_Button_Number6.originalLocation                    = new Point(571, 673);
+            uI_Button_Number3.Location                  = uI_Button_Number3.originalLocation                    = new Point(571, 755);
+            uI_Button_Number_Comma.Location             = uI_Button_Number_Comma.originalLocation               = new Point(571, 837);
+
+            uI_Button_Operation_Delete.Location         = uI_Button_Operation_Delete.originalLocation           = new Point(760, 427);
+            uI_Button_Operation_Division.Location       = uI_Button_Operation_Division.originalLocation         = new Point(760, 509);
+            uI_Button_Operation_Multiplication.Location = uI_Button_Operation_Multiplication.originalLocation   = new Point(760, 591);
+            uI_Button_Operation_Subtraction.Location    = uI_Button_Operation_Subtraction.originalLocation      = new Point(760, 673);
+            uI_Button_Operation_Addition.Location       = uI_Button_Operation_Addition.originalLocation         = new Point(760, 755);
+            uI_Button_Equals.Location                   = uI_Button_Equals.originalLocation                     = new Point(760, 837);
+        }
+
+        private void ОбычныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            originalButtonSize = new Size(240, 100);
+            Width = 1280;
+            Height = 960;
+
+            uI_Button_Operation_Cos.Visible     = false;
+            uI_Button_Operation_Sin.Visible     = false;
+            uI_Button_Operation_Tg.Visible      = false;
+            uI_Button_Operation_Ctg.Visible     = false;
+            uI_Button_Operation_Fact.Visible    = false;
+            uI_Button_Operation_Abs.Visible     = false;
+
+            uI_Button_Operation_Modulo.Location         = uI_Button_Operation_Modulo.originalLocation           = new Point(4, 307);
+            uI_Button_Operation_Hyperbole.Location      = uI_Button_Operation_Hyperbole.originalLocation        = new Point(4, 409);
+            uI_Button_Number7.Location                  = uI_Button_Number7.originalLocation                    = new Point(4, 511);
+            uI_Button_Number4.Location                  = uI_Button_Number4.originalLocation                    = new Point(4, 613);
+            uI_Button_Number1.Location                  = uI_Button_Number1.originalLocation                    = new Point(4, 715);
+            uI_Button_Number_ChangeSign.Location        = uI_Button_Number_ChangeSign.originalLocation          = new Point(4, 817);
+
+            uI_Button_Operation_C.Location              = uI_Button_Operation_C.originalLocation                = new Point(246, 307);
+            uI_Button_Operation_Square.Location         = uI_Button_Operation_Square.originalLocation           = new Point(246, 409);
+            uI_Button_Number8.Location                  = uI_Button_Number8.originalLocation                    = new Point(246, 511);
+            uI_Button_Number5.Location                  = uI_Button_Number5.originalLocation                    = new Point(246, 613);
+            uI_Button_Number2.Location                  = uI_Button_Number2.originalLocation                    = new Point(246, 715);
+            uI_Button_Number0.Location                  = uI_Button_Number0.originalLocation                    = new Point(246, 817);
+
+            uI_Button_Operation_CE.Location             = uI_Button_Operation_CE.originalLocation               = new Point(488, 307);
+            uI_Button_Operation_SquareRoot.Location     = uI_Button_Operation_SquareRoot.originalLocation       = new Point(488, 409);
+            uI_Button_Number9.Location                  = uI_Button_Number9.originalLocation                    = new Point(488, 511);
+            uI_Button_Number6.Location                  = uI_Button_Number6.originalLocation                    = new Point(488, 613);
+            uI_Button_Number3.Location                  = uI_Button_Number3.originalLocation                    = new Point(488, 715);
+            uI_Button_Number_Comma.Location             = uI_Button_Number_Comma.originalLocation               = new Point(488, 817);
+
+            uI_Button_Operation_Delete.Location         = uI_Button_Operation_Delete.originalLocation           = new Point(730, 307);
+            uI_Button_Operation_Division.Location       = uI_Button_Operation_Division.originalLocation         = new Point(730, 409);
+            uI_Button_Operation_Multiplication.Location = uI_Button_Operation_Multiplication.originalLocation   = new Point(730, 511);
+            uI_Button_Operation_Subtraction.Location    = uI_Button_Operation_Subtraction.originalLocation      = new Point(730, 613);
+            uI_Button_Operation_Addition.Location       = uI_Button_Operation_Addition.originalLocation         = new Point(730, 715);
+            uI_Button_Equals.Location                   = uI_Button_Equals.originalLocation                     = new Point(730, 817);
+        }
+
         #endregion
     }
 }
