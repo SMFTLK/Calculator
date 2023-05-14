@@ -15,6 +15,8 @@ namespace Calc
 
         public const float fontSize = 40F;
 
+        public static Color BoxColor;
+
         public Point originalLocation;
 
         #endregion
@@ -51,12 +53,10 @@ namespace Calc
 
             graph.Clear(Parent.BackColor);
 
-            //Resize += new EventHandler(FormResize);
-
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
-            graph.DrawRectangle(new Pen(BackColor), rect);
-            graph.FillRectangle(new SolidBrush(BackColor), rect);
+            graph.DrawRectangle(new Pen(BoxColor), rect);
+            graph.FillRectangle(new SolidBrush(BoxColor), rect);
 
             graph.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             graph.DrawString(Text, Font, new SolidBrush(ForeColor), rect, SF);
@@ -71,6 +71,9 @@ namespace Calc
             base.InitLayout();
 
             originalLocation = Location;
+
+            // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
+            BoxColor = BackColor;
 
             textBoxHeight = Height;
             textBoxWidth = Width;

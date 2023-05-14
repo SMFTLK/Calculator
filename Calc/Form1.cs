@@ -6,53 +6,77 @@ namespace Calc
 {
     public partial class Form : System.Windows.Forms.Form
     {
+        #region Переменные
+
         /// <summary>
         /// Операция над числами
         /// </summary>
         private string operation;
+
         /// <summary>
         /// Первое число
         /// </summary>
         private string leftValue;
+
         /// <summary>
         /// Второе число 
         /// </summary>
         private string rightValue;
+
+
 
         /// <summary>
         /// Переменная для исключения деления на ноль
         /// </summary>
         private const string warnAboutDivisionByZero = "Деление на ноль невозможно.";
 
+
+
         /// <summary>
         /// Очищение строк и переменных, если вводится новое число после операции
         /// </summary>
         private bool isNewNumber;
+
         /// <summary>
         /// Состояние, обозначающее следующее: записывается первое или второе число в данный момент
         /// </summary>
         private bool isReadingFirstNumber;
+
         /// <summary>
         /// Состояние, обозначающее завершённость операции над числами
         /// </summary>
         private bool isOperationGoingOn;
 
         /// <summary>
+        /// Тема калькулятора (светлая или тёмная)
+        /// </summary>
+        private bool isDarkTheme;
+
+
+        private const int dimmingAmount = 30;
+
+
+        /// <summary>
         /// Переменная, содержащая в себе изначальные размеры кнопки
         /// </summary>
         private Size originalButtonSize;
+
         /// <summary>
         /// Переменная, содержащая в себе изначальные размеры формы
         /// </summary>
         private Size originalFormSize;
+
         /// <summary>
         /// Переменная, содержащая в себе изначальные размеры текста
         /// </summary>
         private Size originalTextBoxSize;
+
         /// <summary>
         /// Переменная, содержащая в себе изначальные размеры текста
         /// </summary>
         private Size originalLabelSize;
+
+        #endregion
 
         public Form()
         {
@@ -61,6 +85,7 @@ namespace Calc
             isNewNumber = true;
             isReadingFirstNumber = true;
             isOperationGoingOn = false;
+            isDarkTheme = true;
 
             operation = "";
 
@@ -73,6 +98,8 @@ namespace Calc
 
         private void Form_Load(object sender, EventArgs e)
         {
+            isDarkTheme = true;
+
             originalFormSize = new Size(Size.Width, Size.Height);
             originalButtonSize = new Size(UI_Button_Number.buttonWidth, UI_Button_Number.buttonHeight);
             originalTextBoxSize = new Size(UI_TextBox.textBoxWidth, UI_TextBox.textBoxHeight);
@@ -896,6 +923,38 @@ namespace Calc
                 label.Font = new Font(label.Font.FontFamily, 30F);
         }
 
+        private void ChangeButtonColor(Color clr)
+        {
+            if (isDarkTheme)
+            {
+                UI_Button_Number.BoxColor = Color.FromArgb(65 + dimmingAmount > 255 ? 255 : 65 + dimmingAmount, clr);
+                UI_Button_Operation.BoxColor = Color.FromArgb(65 - dimmingAmount < 0 ? 0 : 65 - dimmingAmount, clr);
+            }
+            else
+            {
+                UI_Button_Number.BoxColor = Color.FromArgb(185 + dimmingAmount > 255 ? 255 : 185 + dimmingAmount, clr);
+                UI_Button_Operation.BoxColor = Color.FromArgb(185 - dimmingAmount < 0 ? 0 : 185 - dimmingAmount, clr);
+            }
+        }
+
+        private void ChangeFormColor(Color clr)
+        {
+            if (isDarkTheme)
+            {
+                BackColor = Color.FromArgb(clr.R - 50 < 0 ? 0 : clr.R - 50, clr.G - 50 < 0 ? 0 : clr.G - 50, clr.B - 50 < 0 ? 0 : clr.B - 50);
+            }
+            else
+            {
+                BackColor = Color.FromArgb(clr.R + 50 > 255 ? 255 : clr.R + 50, clr.G + 50 > 255 ? 255 : clr.G + 50, clr.B + 50 > 255 ? 255 : clr.B + 50);
+            }
+        }
+
+        private void changeTextsColor()
+        {
+            UI_TextBox.BoxColor = BackColor;
+            UI_Label.BoxColor = BackColor;
+        }
+
         #endregion
 
         #region Режимы
@@ -913,40 +972,115 @@ namespace Calc
             uI_Button_Operation_Fact.Visible    = true;
             uI_Button_Operation_Abs.Visible     = true;
 
-            uI_Button_Operation_Fact.Location           = uI_Button_Operation_Fact.originalLocation             = new Point(4, 427);
-            uI_Button_Operation_Abs.Location            = uI_Button_Operation_Abs.originalLocation              = new Point(4, 509);
-            uI_Button_Operation_Ctg.Location            = uI_Button_Operation_Ctg.originalLocation              = new Point(4, 591);
-            uI_Button_Operation_Tg.Location             = uI_Button_Operation_Tg.originalLocation               = new Point(4, 673);
-            uI_Button_Operation_Cos.Location            = uI_Button_Operation_Cos.originalLocation              = new Point(4, 755);
-            uI_Button_Operation_Sin.Location            = uI_Button_Operation_Sin.originalLocation              = new Point(4, 837);
+            #region Тригонометрические функции + факториал и модуль
 
-            uI_Button_Operation_Modulo.Location         = uI_Button_Operation_Modulo.originalLocation           = new Point(193, 427);
-            uI_Button_Operation_Hyperbole.Location      = uI_Button_Operation_Hyperbole.originalLocation        = new Point(193, 509);
-            uI_Button_Number7.Location                  = uI_Button_Number7.originalLocation                    = new Point(193, 591);
-            uI_Button_Number4.Location                  = uI_Button_Number4.originalLocation                    = new Point(193, 673);
-            uI_Button_Number1.Location                  = uI_Button_Number1.originalLocation                    = new Point(193, 755);
-            uI_Button_Number_ChangeSign.Location        = uI_Button_Number_ChangeSign.originalLocation          = new Point(193, 837);
+            uI_Button_Operation_Fact.Location = uI_Button_Operation_Fact.originalLocation = new Point(4, 427);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Fact, uI_Button_Operation_Fact.originalLocation);
 
-            uI_Button_Operation_C.Location              = uI_Button_Operation_C.originalLocation                = new Point(382, 427);
-            uI_Button_Operation_Square.Location         = uI_Button_Operation_Square.originalLocation           = new Point(382, 509);
-            uI_Button_Number8.Location                  = uI_Button_Number8.originalLocation                    = new Point(382, 591);
-            uI_Button_Number5.Location                  = uI_Button_Number5.originalLocation                    = new Point(382, 673);
-            uI_Button_Number2.Location                  = uI_Button_Number2.originalLocation                    = new Point(382, 755);
-            uI_Button_Number0.Location                  = uI_Button_Number0.originalLocation                    = new Point(382, 837);
+            uI_Button_Operation_Abs.Location = uI_Button_Operation_Abs.originalLocation = new Point(4, 509);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Abs, uI_Button_Operation_Abs.originalLocation);
 
-            uI_Button_Operation_CE.Location             = uI_Button_Operation_CE.originalLocation               = new Point(571, 427);
-            uI_Button_Operation_SquareRoot.Location     = uI_Button_Operation_SquareRoot.originalLocation       = new Point(571, 509);
-            uI_Button_Number9.Location                  = uI_Button_Number9.originalLocation                    = new Point(571, 591);
-            uI_Button_Number6.Location                  = uI_Button_Number6.originalLocation                    = new Point(571, 673);
-            uI_Button_Number3.Location                  = uI_Button_Number3.originalLocation                    = new Point(571, 755);
-            uI_Button_Number_Comma.Location             = uI_Button_Number_Comma.originalLocation               = new Point(571, 837);
+            uI_Button_Operation_Ctg.Location = uI_Button_Operation_Ctg.originalLocation = new Point(4, 591);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Ctg, uI_Button_Operation_Ctg.originalLocation);
 
-            uI_Button_Operation_Delete.Location         = uI_Button_Operation_Delete.originalLocation           = new Point(760, 427);
-            uI_Button_Operation_Division.Location       = uI_Button_Operation_Division.originalLocation         = new Point(760, 509);
+            uI_Button_Operation_Tg.Location = uI_Button_Operation_Tg.originalLocation = new Point(4, 673);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Tg, uI_Button_Operation_Tg.originalLocation);
+
+            uI_Button_Operation_Cos.Location = uI_Button_Operation_Cos.originalLocation = new Point(4, 755);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Cos, uI_Button_Operation_Cos.originalLocation);
+
+            uI_Button_Operation_Sin.Location = uI_Button_Operation_Sin.originalLocation = new Point(4, 837);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Sin, uI_Button_Operation_Sin.originalLocation);
+
+            #endregion
+
+            #region Остаток, -1 степень, 1 4 7, +-
+
+            uI_Button_Operation_Modulo.Location = uI_Button_Operation_Modulo.originalLocation = new Point(193, 427);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Modulo, uI_Button_Operation_Modulo.originalLocation);
+
+            uI_Button_Operation_Hyperbole.Location = uI_Button_Operation_Hyperbole.originalLocation = new Point(193, 509);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Hyperbole, uI_Button_Operation_Hyperbole.originalLocation);
+
+            uI_Button_Number7.Location = uI_Button_Number7.originalLocation = new Point(193, 591);
+            ResizeControl(originalButtonSize, uI_Button_Number7, uI_Button_Number7.originalLocation);
+
+            uI_Button_Number4.Location = uI_Button_Number4.originalLocation = new Point(193, 673);
+            ResizeControl(originalButtonSize, uI_Button_Number4, uI_Button_Number4.originalLocation);
+
+            uI_Button_Number1.Location = uI_Button_Number1.originalLocation = new Point(193, 755);
+            ResizeControl(originalButtonSize, uI_Button_Number1, uI_Button_Number1.originalLocation);
+
+            uI_Button_Number_ChangeSign.Location = uI_Button_Number_ChangeSign.originalLocation = new Point(193, 837);
+            ResizeControl(originalButtonSize, uI_Button_Number_ChangeSign, uI_Button_Number_ChangeSign.originalLocation);
+
+            #endregion
+
+            #region C, квадрат, 2 5 8 0
+
+            uI_Button_Operation_C.Location = uI_Button_Operation_C.originalLocation = new Point(382, 427);
+            ResizeControl(originalButtonSize, uI_Button_Operation_C, uI_Button_Operation_C.originalLocation);
+
+            uI_Button_Operation_Square.Location = uI_Button_Operation_Square.originalLocation = new Point(382, 509);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Square, uI_Button_Operation_Square.originalLocation);
+
+            uI_Button_Number8.Location = uI_Button_Number8.originalLocation = new Point(382, 591);
+            ResizeControl(originalButtonSize, uI_Button_Number8, uI_Button_Number8.originalLocation);
+
+            uI_Button_Number5.Location = uI_Button_Number5.originalLocation = new Point(382, 673);
+            ResizeControl(originalButtonSize, uI_Button_Number5, uI_Button_Number5.originalLocation);
+
+            uI_Button_Number2.Location = uI_Button_Number2.originalLocation = new Point(382, 755);
+            ResizeControl(originalButtonSize, uI_Button_Number2, uI_Button_Number2.originalLocation);
+
+            uI_Button_Number0.Location = uI_Button_Number0.originalLocation = new Point(382, 837);
+            ResizeControl(originalButtonSize, uI_Button_Number0, uI_Button_Number0.originalLocation);
+
+            #endregion
+
+            #region СЕ, корень, 3 6 9, запятая
+
+            uI_Button_Operation_CE.Location = uI_Button_Operation_CE.originalLocation = new Point(571, 427);
+            ResizeControl(originalButtonSize, uI_Button_Operation_CE, uI_Button_Operation_CE.originalLocation);
+
+            uI_Button_Operation_SquareRoot.Location = uI_Button_Operation_SquareRoot.originalLocation = new Point(571, 509);
+            ResizeControl(originalButtonSize, uI_Button_Operation_SquareRoot, uI_Button_Operation_SquareRoot.originalLocation);
+
+            uI_Button_Number9.Location = uI_Button_Number9.originalLocation = new Point(571, 591);
+            ResizeControl(originalButtonSize, uI_Button_Number9, uI_Button_Number9.originalLocation);
+
+            uI_Button_Number6.Location = uI_Button_Number6.originalLocation = new Point(571, 673);
+            ResizeControl(originalButtonSize, uI_Button_Number6, uI_Button_Number6.originalLocation);
+
+            uI_Button_Number3.Location = uI_Button_Number3.originalLocation = new Point(571, 755);
+            ResizeControl(originalButtonSize, uI_Button_Number3, uI_Button_Number3.originalLocation);
+
+            uI_Button_Number_Comma.Location = uI_Button_Number_Comma.originalLocation = new Point(571, 837);
+            ResizeControl(originalButtonSize, uI_Button_Number_Comma, uI_Button_Number_Comma.originalLocation);
+
+            #endregion
+
+            #region Арифметические операции, равно
+
+            uI_Button_Operation_Delete.Location = uI_Button_Operation_Delete.originalLocation = new Point(760, 427);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Delete, uI_Button_Operation_Delete.originalLocation);
+
+            uI_Button_Operation_Division.Location = uI_Button_Operation_Division.originalLocation = new Point(760, 509);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Division, uI_Button_Operation_Division.originalLocation);
+
             uI_Button_Operation_Multiplication.Location = uI_Button_Operation_Multiplication.originalLocation   = new Point(760, 591);
-            uI_Button_Operation_Subtraction.Location    = uI_Button_Operation_Subtraction.originalLocation      = new Point(760, 673);
-            uI_Button_Operation_Addition.Location       = uI_Button_Operation_Addition.originalLocation         = new Point(760, 755);
-            uI_Button_Equals.Location                   = uI_Button_Equals.originalLocation                     = new Point(760, 837);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Multiplication, uI_Button_Operation_Multiplication.originalLocation);
+
+            uI_Button_Operation_Subtraction.Location = uI_Button_Operation_Subtraction.originalLocation = new Point(760, 673);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Subtraction, uI_Button_Operation_Subtraction.originalLocation);
+
+            uI_Button_Operation_Addition.Location = uI_Button_Operation_Addition.originalLocation = new Point(760, 755);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Addition, uI_Button_Operation_Addition.originalLocation);
+
+            uI_Button_Equals.Location = uI_Button_Equals.originalLocation = new Point(760, 837);
+            ResizeControl(originalButtonSize, uI_Button_Equals, uI_Button_Equals.originalLocation);
+
+            #endregion
         }
 
         private void ОбычныйToolStripMenuItem_Click(object sender, EventArgs e)
@@ -962,33 +1096,179 @@ namespace Calc
             uI_Button_Operation_Fact.Visible    = false;
             uI_Button_Operation_Abs.Visible     = false;
 
+            #region Остаток, -1 степень, 1 4 7, +-
+
             uI_Button_Operation_Modulo.Location         = uI_Button_Operation_Modulo.originalLocation           = new Point(4, 307);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Modulo, uI_Button_Operation_Modulo.originalLocation);
+
             uI_Button_Operation_Hyperbole.Location      = uI_Button_Operation_Hyperbole.originalLocation        = new Point(4, 409);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Hyperbole, uI_Button_Operation_Hyperbole.originalLocation);
+
             uI_Button_Number7.Location                  = uI_Button_Number7.originalLocation                    = new Point(4, 511);
+            ResizeControl(originalButtonSize, uI_Button_Number7, uI_Button_Number7.originalLocation);
+
             uI_Button_Number4.Location                  = uI_Button_Number4.originalLocation                    = new Point(4, 613);
+            ResizeControl(originalButtonSize, uI_Button_Number4, uI_Button_Number4.originalLocation);
+
             uI_Button_Number1.Location                  = uI_Button_Number1.originalLocation                    = new Point(4, 715);
+            ResizeControl(originalButtonSize, uI_Button_Number1, uI_Button_Number1.originalLocation);
+
             uI_Button_Number_ChangeSign.Location        = uI_Button_Number_ChangeSign.originalLocation          = new Point(4, 817);
+            ResizeControl(originalButtonSize, uI_Button_Number_ChangeSign, uI_Button_Number_ChangeSign.originalLocation);
+
+            #endregion
+
+            #region C, квадрат, 2 5 8 0
 
             uI_Button_Operation_C.Location              = uI_Button_Operation_C.originalLocation                = new Point(246, 307);
+            ResizeControl(originalButtonSize, uI_Button_Operation_C, uI_Button_Operation_C.originalLocation);
+
             uI_Button_Operation_Square.Location         = uI_Button_Operation_Square.originalLocation           = new Point(246, 409);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Square, uI_Button_Operation_Square.originalLocation);
+
             uI_Button_Number8.Location                  = uI_Button_Number8.originalLocation                    = new Point(246, 511);
+            ResizeControl(originalButtonSize, uI_Button_Number8, uI_Button_Number8.originalLocation);
+
             uI_Button_Number5.Location                  = uI_Button_Number5.originalLocation                    = new Point(246, 613);
+            ResizeControl(originalButtonSize, uI_Button_Number5, uI_Button_Number5.originalLocation);
+
             uI_Button_Number2.Location                  = uI_Button_Number2.originalLocation                    = new Point(246, 715);
+            ResizeControl(originalButtonSize, uI_Button_Number2, uI_Button_Number2.originalLocation);
+
             uI_Button_Number0.Location                  = uI_Button_Number0.originalLocation                    = new Point(246, 817);
+            ResizeControl(originalButtonSize, uI_Button_Number0, uI_Button_Number0.originalLocation);
+
+            #endregion
+
+            #region СЕ, корень, 3 6 9, запятая
 
             uI_Button_Operation_CE.Location             = uI_Button_Operation_CE.originalLocation               = new Point(488, 307);
+            ResizeControl(originalButtonSize, uI_Button_Operation_CE, uI_Button_Operation_CE.originalLocation);
+
             uI_Button_Operation_SquareRoot.Location     = uI_Button_Operation_SquareRoot.originalLocation       = new Point(488, 409);
+            ResizeControl(originalButtonSize, uI_Button_Operation_SquareRoot, uI_Button_Operation_SquareRoot.originalLocation);
+
             uI_Button_Number9.Location                  = uI_Button_Number9.originalLocation                    = new Point(488, 511);
+            ResizeControl(originalButtonSize, uI_Button_Number9, uI_Button_Number9.originalLocation);
+
             uI_Button_Number6.Location                  = uI_Button_Number6.originalLocation                    = new Point(488, 613);
+            ResizeControl(originalButtonSize, uI_Button_Number6, uI_Button_Number6.originalLocation);
+
             uI_Button_Number3.Location                  = uI_Button_Number3.originalLocation                    = new Point(488, 715);
+            ResizeControl(originalButtonSize, uI_Button_Number3, uI_Button_Number3.originalLocation);
+
             uI_Button_Number_Comma.Location             = uI_Button_Number_Comma.originalLocation               = new Point(488, 817);
+            ResizeControl(originalButtonSize, uI_Button_Number_Comma, uI_Button_Number_Comma.originalLocation);
+
+            #endregion
+
+            #region Арифметические операции, равно
 
             uI_Button_Operation_Delete.Location         = uI_Button_Operation_Delete.originalLocation           = new Point(730, 307);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Delete, uI_Button_Operation_Delete.originalLocation);
+
             uI_Button_Operation_Division.Location       = uI_Button_Operation_Division.originalLocation         = new Point(730, 409);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Division, uI_Button_Operation_Division.originalLocation);
+
             uI_Button_Operation_Multiplication.Location = uI_Button_Operation_Multiplication.originalLocation   = new Point(730, 511);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Multiplication, uI_Button_Operation_Multiplication.originalLocation);
+
             uI_Button_Operation_Subtraction.Location    = uI_Button_Operation_Subtraction.originalLocation      = new Point(730, 613);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Subtraction, uI_Button_Operation_Subtraction.originalLocation);
+
             uI_Button_Operation_Addition.Location       = uI_Button_Operation_Addition.originalLocation         = new Point(730, 715);
+            ResizeControl(originalButtonSize, uI_Button_Operation_Addition, uI_Button_Operation_Addition.originalLocation);
+
             uI_Button_Equals.Location                   = uI_Button_Equals.originalLocation                     = new Point(730, 817);
+            ResizeControl(originalButtonSize, uI_Button_Equals, uI_Button_Equals.originalLocation);
+
+            #endregion
+        }
+
+        #endregion
+
+        #region Темы
+        private void СветлаяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (isDarkTheme)
+            {
+                isDarkTheme = false;
+
+                UI_Button_Equals.Dimming = Color.FromArgb(30, Color.White);
+
+                ChangeButtonColor(UI_Button_Operation.BoxColor);
+                ChangeButtonColor(UI_Button_Number.BoxColor);
+                ChangeFormColor(BackColor);
+                changeTextsColor();
+
+                Refresh();
+            }
+        }
+
+        private void ТёмнаяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!isDarkTheme)
+            {
+                isDarkTheme = true;
+
+                UI_Button_Equals.Dimming = Color.FromArgb(30, Color.Black);
+
+                ChangeButtonColor(UI_Button_Operation.BoxColor);
+                ChangeButtonColor(UI_Button_Number.BoxColor);
+                ChangeFormColor(BackColor);
+                changeTextsColor();
+
+                Refresh();
+            }
+        }
+
+        #endregion
+
+        #region Цвета
+
+        private void КрасныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeButtonColor(Color.Red);
+            ChangeFormColor(Color.Red);
+            changeTextsColor();
+
+            Refresh();
+        }
+
+        private void ЗелёныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeButtonColor(Color.FromArgb(0, 128, 0));
+            ChangeFormColor(Color.FromArgb(0, 128, 0));
+            changeTextsColor();
+
+            Refresh();
+        }
+
+        private void РозовыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeButtonColor(Color.FromArgb(255, 100, 128));
+            ChangeFormColor(Color.FromArgb(255, 100, 128));
+            changeTextsColor();
+
+            Refresh();
+        }
+
+        private void СинийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeButtonColor(Color.Blue);
+            ChangeFormColor(Color.Blue);
+            changeTextsColor();
+
+            Refresh();
+        }
+
+        private void КоричневыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeButtonColor(Color.FromArgb(150, 75, 0));
+            ChangeFormColor(Color.FromArgb(150, 75, 0));
+            changeTextsColor();
+
+            Refresh();
         }
 
         #endregion

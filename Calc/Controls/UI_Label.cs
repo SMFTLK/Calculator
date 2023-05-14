@@ -17,6 +17,9 @@ namespace Calc
 
         public Point originalLocation;
 
+        public static Color BoxColor;
+        public static Color FontColor;
+
         #endregion
 
         public UI_Label()
@@ -55,11 +58,11 @@ namespace Calc
 
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
-            graph.DrawRectangle(new Pen(BackColor), rect);
-            graph.FillRectangle(new SolidBrush(BackColor), rect);
+            graph.DrawRectangle(new Pen(BoxColor), rect);
+            graph.FillRectangle(new SolidBrush(BoxColor), rect);
 
             graph.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            graph.DrawString(Text, Font, new SolidBrush(ForeColor), rect, SF);
+            graph.DrawString(Text, Font, new SolidBrush(FontColor), rect, SF);
         }
 
         #endregion
@@ -74,6 +77,10 @@ namespace Calc
 
             labelHeight = Height;
             labelWidth = Width;
+
+            // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
+            BoxColor = BackColor;
+            FontColor = ForeColor;
         }
 
         #endregion

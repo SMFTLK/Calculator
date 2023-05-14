@@ -19,13 +19,11 @@ namespace Calc
 
         private bool MouseEntered;
 
-        private Rectangle rect;
-
         public Point originalLocation;
 
-        private Color BoxColor;
-        private Color FontColor;
-        private Color BorderColor;
+        public static Color BoxColor;
+        public static Color FontColor;
+        public static Color BorderColor;
 
         #endregion
 
@@ -56,6 +54,7 @@ namespace Calc
         }
 
         #region Отрисовка
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -64,26 +63,19 @@ namespace Calc
             graph.SmoothingMode = SmoothingMode.AntiAlias;
             graph.Clear(Parent.BackColor);
 
-            rect = new Rectangle(0, 0, Width - 1, Height - 1);
+            Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
             GraphicsPath path = MakeCornersRounded(rect, cornerSize);
 
-            // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
-            BoxColor = BackColor;
-            FontColor = ForeColor;
-            BorderColor = Color.FromArgb(15, Color.White);
-
-            if (!Enabled)
-            {
-                BoxColor = Color.FromArgb(40, 40, 40);
-                FontColor = Color.FromArgb(98, 98, 98);
-            }
-
-            if (MouseEntered)
-                BoxColor = Color.FromArgb(50, 50, 50);
-
             graph.DrawPath(new Pen(BoxColor), path);
             graph.FillPath(new SolidBrush(BoxColor), path);
+            
+            if (MouseEntered)
+            {
+                graph.DrawPath(new Pen(UI_Button_Operation.BoxColor), path);
+                graph.FillPath(new SolidBrush(UI_Button_Operation.BoxColor), path);
+            }
+
             graph.DrawPath(new Pen(BorderColor), path);
 
             graph.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -140,6 +132,11 @@ namespace Calc
 
             buttonWidth = Width;
             buttonHeight = Height;
+
+            // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
+            BoxColor = BackColor;
+            FontColor = ForeColor;
+            BorderColor = Color.FromArgb(15, Color.White);
         }
 
         #endregion
