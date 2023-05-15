@@ -80,7 +80,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(13, 13);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(177, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(297, 24);
             this.menuStrip1.TabIndex = 29;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -182,14 +182,14 @@
             // светлаяToolStripMenuItem
             // 
             this.светлаяToolStripMenuItem.Name = "светлаяToolStripMenuItem";
-            this.светлаяToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.светлаяToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.светлаяToolStripMenuItem.Text = "Светлая";
             this.светлаяToolStripMenuItem.Click += new System.EventHandler(this.СветлаяToolStripMenuItem_Click);
             // 
             // тёмнаяToolStripMenuItem
             // 
             this.тёмнаяToolStripMenuItem.Name = "тёмнаяToolStripMenuItem";
-            this.тёмнаяToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.тёмнаяToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.тёмнаяToolStripMenuItem.Text = "Тёмная";
             this.тёмнаяToolStripMenuItem.Click += new System.EventHandler(this.ТёмнаяToolStripMenuItem_Click);
             // 

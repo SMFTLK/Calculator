@@ -273,13 +273,15 @@ namespace Calc
 
             #region Если есть операция
 
-            // Если первое число - ноль
+            // Если первое число - ноль, и операция идёт
             if (isOperationGoingOn && leftValue == "0" && rightValue != "0")
             {
                 DRValue = Convert.ToDouble(rightValue);
-                result = GetResult(operation, DRValue);
+                result = GetResult(operation, 0, DRValue);
 
                 uI_Label.Text = leftValue + " " + operation + " " + rightValue + " =";
+
+                leftValue = result.ToString();
             }
             // Если второе число - ноль
             else if (isOperationGoingOn && leftValue != "0" && rightValue == "0")
@@ -815,54 +817,26 @@ namespace Calc
 
         #region Методы формы
 
-        private double GetResult(string oper, double rightVar, double leftVar)
+        private double GetResult(string oper, double leftVar, double rightVar)
         {
             double result;
 
             switch (oper)
             {
                 case "+":
-                    result = rightVar + leftVar; break;
+                    result = leftVar + rightVar; break;
 
                 case "-":
-                    result = rightVar - leftVar; break;
+                    result = leftVar - rightVar; break;
 
                 case "×":
-                    result = rightVar * leftVar; break;
+                    result = leftVar * rightVar; break;
 
                 case "÷":
-                    result = rightVar / leftVar; break;
+                    result = leftVar / rightVar; break;
 
                 case "%":
-                    result = rightVar * leftVar / 100; break;
-
-                default:
-                    result = Convert.ToDouble(uI_TextBox.Text); break;
-            }
-
-            return result;
-        }
-
-        private double GetResult(in string oper, in double var)
-        {
-            double result;
-
-            switch (oper)
-            {
-                case "+":
-                    result = var + var; break;
-
-                case "-":
-                    result = var - var; break;
-
-                case "×":
-                    result = var * var; break;
-
-                case "÷":
-                    result = var / var; break;
-
-                case "%":
-                    result = var * var / 100; break;
+                    result = leftVar * rightVar / 100; break;
 
                 default:
                     result = Convert.ToDouble(uI_TextBox.Text); break;
