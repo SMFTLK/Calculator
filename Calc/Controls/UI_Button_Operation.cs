@@ -76,6 +76,12 @@ namespace Calc
                 graph.FillPath(new SolidBrush(UI_Button_Number.BoxColor), path);
             }
 
+            else if (!Enabled)
+            {
+                graph.DrawPath(new Pen(Color.FromArgb(50, Color.Black)), path);
+                graph.FillPath(new SolidBrush(Color.FromArgb(50, Color.Black)), path);
+            }
+
             graph.DrawPath(new Pen(BorderColor), path);
 
             graph.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -137,7 +143,7 @@ namespace Calc
             // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
             BoxColor = BackColor;
             FontColor = ForeColor;
-            BorderColor = Color.FromArgb(15, Color.White);
+            BorderColor = Color.FromArgb(20, Color.White);
         }
 
         #endregion

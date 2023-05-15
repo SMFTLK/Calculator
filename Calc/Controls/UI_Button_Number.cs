@@ -136,7 +136,7 @@ namespace Calc
             // Я сделал это, чтобы было понятнее, какой цвет за что отвечает
             BoxColor = BackColor;
             FontColor = ForeColor;
-            BorderColor = Color.FromArgb(15, Color.White);
+            BorderColor = Color.FromArgb(20, Color.White);
         }
 
         #endregion

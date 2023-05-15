@@ -699,6 +699,13 @@ namespace Calc
                 uI_Button_Number_ChangeSign.Enabled         = false;
                 uI_Button_Number_Comma.Enabled              = false;
 
+                uI_Button_Operation_Abs.Enabled             = false;
+                uI_Button_Operation_Fact.Enabled            = false;
+                uI_Button_Operation_Sin.Enabled             = false;
+                uI_Button_Operation_Cos.Enabled             = false;
+                uI_Button_Operation_Tg.Enabled              = false;
+                uI_Button_Operation_Ctg.Enabled             = false;
+
                 uI_Button_Operation_Addition.Enabled        = false;
                 uI_Button_Operation_Division.Enabled        = false;
                 uI_Button_Operation_Multiplication.Enabled  = false;
@@ -715,6 +722,13 @@ namespace Calc
             {
                 uI_Button_Number_ChangeSign.Enabled         = true;
                 uI_Button_Number_Comma.Enabled              = true;
+
+                uI_Button_Operation_Abs.Enabled             = true;
+                uI_Button_Operation_Fact.Enabled            = true;
+                uI_Button_Operation_Sin.Enabled             = true;
+                uI_Button_Operation_Cos.Enabled             = true;
+                uI_Button_Operation_Tg.Enabled              = true;
+                uI_Button_Operation_Ctg.Enabled             = true;
 
                 uI_Button_Operation_Addition.Enabled        = true;
                 uI_Button_Operation_Division.Enabled        = true;
