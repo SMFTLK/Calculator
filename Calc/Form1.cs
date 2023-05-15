@@ -167,11 +167,6 @@ namespace Calc
             // При вызове события нажатия кнопки операции в переменную operation записывается арифм. операция кнопки
             operation = B.Text;
 
-            if (isOperationGoingOn && rightValue != "0")
-            {
-
-            }
-
             isOperationGoingOn = true;
 
             // Если считывается число В ПЕРВЫЙ РАЗ
@@ -252,7 +247,7 @@ namespace Calc
             double DRValue, DLValue, result;
 
             // Если нет операции
-            if (!isOperationGoingOn && leftValue != "0" && rightValue != "0")
+            if (!isOperationGoingOn)
             {
                 leftValue = uI_TextBox.Text;
 
@@ -268,6 +263,10 @@ namespace Calc
 
                 return;
             }
+            //else if (!isOperationGoingOn && )
+            //{
+            //
+            //}
 
             rightValue = uI_TextBox.Text;
 
