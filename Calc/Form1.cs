@@ -164,11 +164,6 @@ namespace Calc
             // Отправитель (кнопка)
             UI_Button_Operation B = (UI_Button_Operation)sender;
 
-            // При вызове события нажатия кнопки операции в переменную operation записывается арифм. операция кнопки
-            operation = B.Text;
-
-            isOperationGoingOn = true;
-
             // Если считывается число В ПЕРВЫЙ РАЗ
             if (isReadingFirstNumber)
             {
@@ -231,6 +226,11 @@ namespace Calc
                 }
             }
 
+            // При вызове события нажатия кнопки операции в переменную operation записывается арифм. операция кнопки
+            operation = B.Text;
+
+            isOperationGoingOn = true;
+
             uI_Label.Text = leftValue + " " + operation;
             uI_Label.Refresh();
 
@@ -263,10 +263,6 @@ namespace Calc
 
                 return;
             }
-            //else if (!isOperationGoingOn && )
-            //{
-            //
-            //}
 
             rightValue = uI_TextBox.Text;
 
