@@ -169,10 +169,6 @@ namespace Calc
             {
                 leftValue = uI_TextBox.Text;
 
-                // Это нужно для смены символа (с короткого тире на дефис)
-                if (operation == "−")
-                    operation = "-";
-
                 isReadingFirstNumber = false;
             }
             else
@@ -189,8 +185,6 @@ namespace Calc
                                 leftValue = (Convert.ToDouble(uI_TextBox.Text)).ToString();
                             else
                                 leftValue = (Convert.ToDouble(leftValue) - Convert.ToDouble(uI_TextBox.Text)).ToString();
-
-                            operation = "-";
                             break;
                         }
                     case "×":
@@ -288,6 +282,8 @@ namespace Calc
                 result = GetResult(operation, DLValue, DRValue);
 
                 uI_Label.Text = leftValue + " " + operation + " " + rightValue + " =";
+
+                leftValue = result.ToString();
             }
             // Если оба числа не равны нулю
             else if (isOperationGoingOn && rightValue != "0" && leftValue != "0")
@@ -296,13 +292,15 @@ namespace Calc
                 DRValue = Convert.ToDouble(rightValue);
                 result = GetResult(operation, DLValue, DRValue);
 
-                leftValue = result.ToString();
                 uI_Label.Text += " " + uI_TextBox.Text + " =";
+
+                leftValue = result.ToString();
             }
             // Если цифра введена, но не выбрана операция и произошло нажатие кнопки "равняется"
             else
             {
                 result = Convert.ToDouble(uI_TextBox.Text);
+
                 uI_Label.Text = uI_TextBox.Text + " =";
             }
 
@@ -821,7 +819,7 @@ namespace Calc
                 case "+":
                     result = leftVar + rightVar; break;
 
-                case "-":
+                case "−":
                     result = leftVar - rightVar; break;
 
                 case "×":
