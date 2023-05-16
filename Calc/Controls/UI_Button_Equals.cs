@@ -78,8 +78,8 @@ namespace Calc
 
             if (MouseEntered)
             {
-                graph.DrawPath(new Pen(Color.FromArgb(30, Color.Black)), path);
-                graph.FillPath(new SolidBrush(Color.FromArgb(30, Color.Black)), path);
+                graph.DrawPath(new Pen(Dimming), path);
+                graph.FillPath(new SolidBrush(Dimming), path);
             }
 
             graph.DrawPath(new Pen(BorderColor), path);

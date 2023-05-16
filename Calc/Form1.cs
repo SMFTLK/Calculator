@@ -908,29 +908,49 @@ namespace Calc
         {
             if (isDarkTheme)
             {
-                UI_Button_Number.BoxColor = Color.FromArgb(65 + dimmingAmount > 255 ? 255 : 65 + dimmingAmount, clr);
-                UI_Button_Operation.BoxColor = Color.FromArgb(65 - dimmingAmount < 0 ? 0 : 65 - dimmingAmount, clr);
+                UI_Button_Number.BoxColor = Color.FromArgb(92 + dimmingAmount > 255 ? 255 : 92 + dimmingAmount, clr);
+                UI_Button_Operation.BoxColor = Color.FromArgb(92 - dimmingAmount < 0 ? 0 : 92 - dimmingAmount, clr);
             }
             else
             {
-                UI_Button_Number.BoxColor = Color.FromArgb(185 + dimmingAmount > 255 ? 255 : 185 + dimmingAmount, clr);
-                UI_Button_Operation.BoxColor = Color.FromArgb(185 - dimmingAmount < 0 ? 0 : 185 - dimmingAmount, clr);
+                UI_Button_Number.BoxColor = Color.FromArgb(92 - dimmingAmount < 0 ? 0 : 92 - dimmingAmount, clr);
+                UI_Button_Operation.BoxColor = Color.FromArgb(92 + dimmingAmount > 255 ? 255 : 92 + dimmingAmount, clr);
             }
         }
 
         private void ChangeFormColor(Color clr)
         {
+            byte redColor = clr.R, greenColor = clr.G, blueColor = clr.B;
+
             if (isDarkTheme)
             {
-                BackColor = Color.FromArgb(clr.R - 50 < 0 ? 0 : clr.R - 50, clr.G - 50 < 0 ? 0 : clr.G - 50, clr.B - 50 < 0 ? 0 : clr.B - 50);
+                if (redColor != 0)
+                    redColor = clr.R - 50 < 0 ? (byte)0 : (byte)(clr.R - 50);
+
+                if (greenColor != 0)
+                    greenColor = clr.G - 50 < 0 ? (byte)0 : (byte)(clr.G - 50);
+
+                if (blueColor != 0)
+                    blueColor = clr.B - 50 < 0 ? (byte)0 : (byte)(clr.B - 50);
+
+                BackColor = Color.FromArgb(redColor, greenColor, blueColor);
             }
             else
             {
-                BackColor = Color.FromArgb(clr.R + 50 > 255 ? 255 : clr.R + 50, clr.G + 50 > 255 ? 255 : clr.G + 50, clr.B + 50 > 255 ? 255 : clr.B + 50);
+                if (redColor != 255)
+                    redColor = clr.R + 50 > 255 ? (byte)255 : (byte)(clr.R + 50);
+
+                if (greenColor != 255)
+                    greenColor = clr.G + 50 > 255 ? (byte)255 : (byte)(clr.G + 50);
+
+                if (blueColor != 255)
+                    blueColor = clr.B + 50 > 255 ? (byte)255 : (byte)(clr.B + 50);
+
+                BackColor = Color.FromArgb(redColor, greenColor, blueColor);
             }
         }
 
-        private void changeTextsColor()
+        private void ChangeTextsColor()
         {
             UI_TextBox.BoxColor = BackColor;
             UI_Label.BoxColor = BackColor;
@@ -1180,7 +1200,7 @@ namespace Calc
                 ChangeButtonColor(UI_Button_Operation.BoxColor);
                 ChangeButtonColor(UI_Button_Number.BoxColor);
                 ChangeFormColor(BackColor);
-                changeTextsColor();
+                ChangeTextsColor();
 
                 Refresh();
             }
@@ -1197,7 +1217,7 @@ namespace Calc
                 ChangeButtonColor(UI_Button_Operation.BoxColor);
                 ChangeButtonColor(UI_Button_Number.BoxColor);
                 ChangeFormColor(BackColor);
-                changeTextsColor();
+                ChangeTextsColor();
 
                 Refresh();
             }
@@ -1211,7 +1231,7 @@ namespace Calc
         {
             ChangeButtonColor(Color.Red);
             ChangeFormColor(Color.Red);
-            changeTextsColor();
+            ChangeTextsColor();
 
             Refresh();
         }
@@ -1220,7 +1240,7 @@ namespace Calc
         {
             ChangeButtonColor(Color.FromArgb(0, 128, 0));
             ChangeFormColor(Color.FromArgb(0, 128, 0));
-            changeTextsColor();
+            ChangeTextsColor();
 
             Refresh();
         }
@@ -1229,7 +1249,7 @@ namespace Calc
         {
             ChangeButtonColor(Color.FromArgb(255, 100, 128));
             ChangeFormColor(Color.FromArgb(255, 100, 128));
-            changeTextsColor();
+            ChangeTextsColor();
 
             Refresh();
         }
@@ -1238,7 +1258,7 @@ namespace Calc
         {
             ChangeButtonColor(Color.Blue);
             ChangeFormColor(Color.Blue);
-            changeTextsColor();
+            ChangeTextsColor();
 
             Refresh();
         }
@@ -1247,11 +1267,26 @@ namespace Calc
         {
             ChangeButtonColor(Color.FromArgb(150, 75, 0));
             ChangeFormColor(Color.FromArgb(150, 75, 0));
-            changeTextsColor();
+            ChangeTextsColor();
 
             Refresh();
         }
 
         #endregion
+
+        private void СбросТемыИЦветаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isDarkTheme = true;
+
+            BackColor = Color.FromArgb(32, 32, 32);
+
+            UI_Button_Number.BoxColor = Color.FromArgb(59, 59, 59);
+            UI_Button_Operation.BoxColor = Color.FromArgb(50, 50, 50);
+
+            UI_TextBox.BoxColor = Color.FromArgb(32, 32, 32);
+            UI_Label.BoxColor = Color.FromArgb(32, 32, 32);
+
+            Refresh();
+        }
     }
 }

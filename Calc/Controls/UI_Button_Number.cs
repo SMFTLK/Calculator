@@ -76,6 +76,12 @@ namespace Calc
                 graph.FillPath(new SolidBrush(UI_Button_Operation.BoxColor), path);
             }
 
+            if (!Enabled)
+            {
+                graph.DrawPath(new Pen(Color.FromArgb(80, Color.Black)), path);
+                graph.FillPath(new SolidBrush(Color.FromArgb(80, Color.Black)), path);
+            }
+
             graph.DrawPath(new Pen(BorderColor), path);
 
             graph.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;

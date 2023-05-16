@@ -25,6 +25,7 @@ namespace Calc
         public static Color FontColor;
         public static Color BorderColor;
 
+
         #endregion
 
         public UI_Button_Operation()
@@ -67,16 +68,18 @@ namespace Calc
 
             GraphicsPath path = MakeCornersRounded(rect, cornerSize);
 
-            graph.DrawPath(new Pen(BoxColor), path);
-            graph.FillPath(new SolidBrush(BoxColor), path);
-
             if (MouseEntered)
             {
                 graph.DrawPath(new Pen(UI_Button_Number.BoxColor), path);
                 graph.FillPath(new SolidBrush(UI_Button_Number.BoxColor), path);
             }
+            else
+            {
+                graph.DrawPath(new Pen(BoxColor), path);
+                graph.FillPath(new SolidBrush(BoxColor), path);
+            }
 
-            else if (!Enabled)
+            if (!Enabled)
             {
                 graph.DrawPath(new Pen(Color.FromArgb(50, Color.Black)), path);
                 graph.FillPath(new SolidBrush(Color.FromArgb(50, Color.Black)), path);
